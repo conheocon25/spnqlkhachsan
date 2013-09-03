@@ -7,7 +7,7 @@ class TypeRoom extends Mapper implements \MVC\Domain\TypeRoomFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblTypeRoom = "h3d_type_room";
+		$tblTypeRoom = "baduc_type_room";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblTypeRoom);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTypeRoom);

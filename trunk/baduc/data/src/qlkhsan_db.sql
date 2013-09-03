@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_app`
+-- Structure de la table `baduc_app`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_app` (
+CREATE TABLE IF NOT EXISTS `baduc_app` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
@@ -44,19 +44,19 @@ CREATE TABLE IF NOT EXISTS `h3d_app` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `h3d_app`
+-- Contenu de la table `baduc_app`
 --
 
-INSERT INTO `h3d_app` (`id`, `name`, `phone`, `address`, `email`, `banner`, `prefix`, `alias`, `date_created`, `date_modified`, `date_activity`, `type`, `page_view`) VALUES
-(1, 'Karaoke Ba Đức', '0945 03 07 09', 'Phó Cơ Điều P3 - TPVL', '', 'data/images/banner/logo.png', 'h3d_', 'h3d_', '2012-06-30 10:00:00', '0000-00-00 00:00:00', '2012-12-26 00:28:02', 0, 0);
+INSERT INTO `baduc_app` (`id`, `name`, `phone`, `address`, `email`, `banner`, `prefix`, `alias`, `date_created`, `date_modified`, `date_activity`, `type`, `page_view`) VALUES
+(1, 'Karaoke Ba Đức', '0945 03 07 09', 'Phó Cơ Điều P3 - TPVL', '', 'data/images/banner/logo.png', 'baduc_', 'baduc_', '2012-06-30 10:00:00', '0000-00-00 00:00:00', '2012-12-26 00:28:02', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_category`
+-- Structure de la table `baduc_category`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_category` (
+CREATE TABLE IF NOT EXISTS `baduc_category` (
   `id` int(25) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `picture` binary(255) DEFAULT NULL,
@@ -64,10 +64,10 @@ CREATE TABLE IF NOT EXISTS `h3d_category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Contenu de la table `h3d_category`
+-- Contenu de la table `baduc_category`
 --
 
-INSERT INTO `h3d_category` (`id`, `name`, `picture`) VALUES
+INSERT INTO `baduc_category` (`id`, `name`, `picture`) VALUES
 (3, 'BEER', NULL),
 (8, 'NƯỚC GIẢI KHÁT', NULL),
 (11, 'THUỐC HÚT', NULL),
@@ -77,56 +77,56 @@ INSERT INTO `h3d_category` (`id`, `name`, `picture`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_collect_customer`
+-- Structure de la table `baduc_collect_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_collect_customer` (
+CREATE TABLE IF NOT EXISTS `baduc_collect_customer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idcustomer` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_customer_collect_1` (`idcustomer`)
+  KEY `baduc_customer_collect_1` (`idcustomer`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `h3d_collect_customer`
+-- Contenu de la table `baduc_collect_customer`
 --
 
-INSERT INTO `h3d_collect_customer` (`id`, `idcustomer`, `date`, `value`, `note`) VALUES
+INSERT INTO `baduc_collect_customer` (`id`, `idcustomer`, `date`, `value`, `note`) VALUES
 (2, 1, '2013-05-18', 112, 'abc');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_collect_general`
+-- Structure de la table `baduc_collect_general`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_collect_general` (
+CREATE TABLE IF NOT EXISTS `baduc_collect_general` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_term` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_collect_1` (`id_term`)
+  KEY `baduc_collect_1` (`id_term`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `h3d_collect_general`
+-- Contenu de la table `baduc_collect_general`
 --
 
-INSERT INTO `h3d_collect_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
+INSERT INTO `baduc_collect_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
 (5, 1, '2013-05-18', 101, 'a1');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_config`
+-- Structure de la table `baduc_config`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_config` (
+CREATE TABLE IF NOT EXISTS `baduc_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `param` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
   `value` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -134,10 +134,10 @@ CREATE TABLE IF NOT EXISTS `h3d_config` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
--- Contenu de la table `h3d_config`
+-- Contenu de la table `baduc_config`
 --
 
-INSERT INTO `h3d_config` (`id`, `param`, `value`) VALUES
+INSERT INTO `baduc_config` (`id`, `param`, `value`) VALUES
 (1, 'DON_LANH_NGAY', '200000'),
 (2, 'DON_LANH_GIO', '60000'),
 (3, 'DON_QUAT_NGAY', '160000'),
@@ -158,10 +158,10 @@ INSERT INTO `h3d_config` (`id`, `param`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_course`
+-- Structure de la table `baduc_course`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_course` (
+CREATE TABLE IF NOT EXISTS `baduc_course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idcategory` int(25) DEFAULT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -177,10 +177,10 @@ CREATE TABLE IF NOT EXISTS `h3d_course` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=141 ;
 
 --
--- Contenu de la table `h3d_course`
+-- Contenu de la table `baduc_course`
 --
 
-INSERT INTO `h3d_course` (`id`, `idcategory`, `name`, `shortname`, `unit`, `price1`, `price2`, `price3`, `price4`, `picture`) VALUES
+INSERT INTO `baduc_course` (`id`, `idcategory`, `name`, `shortname`, `unit`, `price1`, `price2`, `price3`, `price4`, `picture`) VALUES
 (15, 11, 'Thuốc Hút', 'Thuốc Hút', 'Gói', 25000, 0, 0, 0, NULL),
 (53, 8, 'Trà Xanh', 'Trà Xanh', 'Chai', 12000, 0, 0, 0, NULL),
 (54, 8, 'C2', 'C2', 'Chai', 12000, 0, 0, 0, NULL),
@@ -204,10 +204,10 @@ INSERT INTO `h3d_course` (`id`, `idcategory`, `name`, `shortname`, `unit`, `pric
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_customer`
+-- Structure de la table `baduc_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_customer` (
+CREATE TABLE IF NOT EXISTS `baduc_customer` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
@@ -220,10 +220,10 @@ CREATE TABLE IF NOT EXISTS `h3d_customer` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Contenu de la table `h3d_customer`
+-- Contenu de la table `baduc_customer`
 --
 
-INSERT INTO `h3d_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `note`, `discount`) VALUES
+INSERT INTO `baduc_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `note`, `discount`) VALUES
 (1, 'Khách Hàng', 0, '', '', 'Vãng lai', 'Vãng lai', 0),
 (6, 'Lê Nguyễn Đông Khoa', 1, '', '', 'Vĩnh Long', '', 0),
 (10, 'Lê Hồng Đức', 1, '', '0918585203', 'Cty TNHH MTV Ba Đức Vĩnh Long', 'Giám Đốc', 0),
@@ -234,20 +234,20 @@ INSERT INTO `h3d_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `n
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_domain`
+-- Structure de la table `baduc_domain`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_domain` (
+CREATE TABLE IF NOT EXISTS `baduc_domain` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `h3d_domain`
+-- Contenu de la table `baduc_domain`
 --
 
-INSERT INTO `h3d_domain` (`id`, `name`) VALUES
+INSERT INTO `baduc_domain` (`id`, `name`) VALUES
 (1, 'TRỆT KHU_A'),
 (2, 'TRỆT KHU_B'),
 (3, 'LẦU 1 KHU_A'),
@@ -256,10 +256,10 @@ INSERT INTO `h3d_domain` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_employee`
+-- Structure de la table `baduc_employee`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_employee` (
+CREATE TABLE IF NOT EXISTS `baduc_employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `gender` tinyint(2) NOT NULL,
@@ -269,49 +269,49 @@ CREATE TABLE IF NOT EXISTS `h3d_employee` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `h3d_employee`
+-- Contenu de la table `baduc_employee`
 --
 
-INSERT INTO `h3d_employee` (`id`, `name`, `gender`, `phone`, `address`) VALUES
+INSERT INTO `baduc_employee` (`id`, `name`, `gender`, `phone`, `address`) VALUES
 (1, 'Nguyễn Hồng Châu', 1, '0919570207', 'Hiếu Phụng, Vũng Liêm, Vĩnh Long'),
 (3, 'Phan Lê Hữu Phúc', 0, '0986468896', 'Mỹ Long, Cao Lãnh, Đồng Tháp');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_loan_employee`
+-- Structure de la table `baduc_loan_employee`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_loan_employee` (
+CREATE TABLE IF NOT EXISTS `baduc_loan_employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idemployee` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_employee_loan_1` (`idemployee`)
+  KEY `baduc_employee_loan_1` (`idemployee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_order_import`
+-- Structure de la table `baduc_order_import`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_order_import` (
+CREATE TABLE IF NOT EXISTS `baduc_order_import` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idsupplier` int(11) NOT NULL,
   `date` date NOT NULL,
   `description` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_order_import_1` (`idsupplier`)
+  KEY `baduc_order_import_1` (`idsupplier`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
--- Contenu de la table `h3d_order_import`
+-- Contenu de la table `baduc_order_import`
 --
 
-INSERT INTO `h3d_order_import` (`id`, `idsupplier`, `date`, `description`) VALUES
+INSERT INTO `baduc_order_import` (`id`, `idsupplier`, `date`, `description`) VALUES
 (1, 1, '2012-04-07', 'ở dưới bét xem nó có hiển thị ra không ?'),
 (2, 1, '2012-04-01', 'có thử'),
 (3, 1, '2012-08-05', 'chúng ta thử xem'),
@@ -329,25 +329,25 @@ INSERT INTO `h3d_order_import` (`id`, `idsupplier`, `date`, `description`) VALUE
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_order_import_detail`
+-- Structure de la table `baduc_order_import_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_order_import_detail` (
+CREATE TABLE IF NOT EXISTS `baduc_order_import_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idorder` int(11) NOT NULL,
   `idresource` int(11) NOT NULL,
   `count` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_order_import_detail_1` (`idorder`),
-  KEY `h3d_order_import_detail_2` (`idresource`)
+  KEY `baduc_order_import_detail_1` (`idorder`),
+  KEY `baduc_order_import_detail_2` (`idresource`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
 
 --
--- Contenu de la table `h3d_order_import_detail`
+-- Contenu de la table `baduc_order_import_detail`
 --
 
-INSERT INTO `h3d_order_import_detail` (`id`, `idorder`, `idresource`, `count`, `price`) VALUES
+INSERT INTO `baduc_order_import_detail` (`id`, `idorder`, `idresource`, `count`, `price`) VALUES
 (1, 1, 1, 20, 1000),
 (3, 1, 2, 10, 8000),
 (4, 4, 1, 8, 10000),
@@ -374,34 +374,34 @@ INSERT INTO `h3d_order_import_detail` (`id`, `idorder`, `idresource`, `count`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_paid_employee`
+-- Structure de la table `baduc_paid_employee`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_paid_employee` (
+CREATE TABLE IF NOT EXISTS `baduc_paid_employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idemployee` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_employee_paid_1` (`idemployee`)
+  KEY `baduc_employee_paid_1` (`idemployee`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `h3d_paid_employee`
+-- Contenu de la table `baduc_paid_employee`
 --
 
-INSERT INTO `h3d_paid_employee` (`id`, `idemployee`, `date`, `value`, `note`) VALUES
+INSERT INTO `baduc_paid_employee` (`id`, `idemployee`, `date`, `value`, `note`) VALUES
 (1, 1, '2012-09-20', 1500000, 'lương tháng 9'),
 (2, 1, '2012-08-19', 200000, 'Ứng lương tháng 8');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_paid_general`
+-- Structure de la table `baduc_paid_general`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_paid_general` (
+CREATE TABLE IF NOT EXISTS `baduc_paid_general` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_term` int(11) NOT NULL,
   `date` date NOT NULL,
@@ -412,10 +412,10 @@ CREATE TABLE IF NOT EXISTS `h3d_paid_general` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `h3d_paid_general`
+-- Contenu de la table `baduc_paid_general`
 --
 
-INSERT INTO `h3d_paid_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
+INSERT INTO `baduc_paid_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
 (1, 1, '2013-04-10', 3500000, 'Thử 2'),
 (2, 1, '2013-04-08', 300000, 'Đóng tiền nước'),
 (3, 1, '2013-04-01', 2300000, 'Thử 2');
@@ -423,40 +423,40 @@ INSERT INTO `h3d_paid_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_paid_other`
+-- Structure de la table `baduc_paid_other`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_paid_other` (
+CREATE TABLE IF NOT EXISTS `baduc_paid_other` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_term` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_paid_1` (`id_term`)
+  KEY `baduc_paid_1` (`id_term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_paid_supplier`
+-- Structure de la table `baduc_paid_supplier`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_paid_supplier` (
+CREATE TABLE IF NOT EXISTS `baduc_paid_supplier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idsupplier` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_supplier_paid_1` (`idsupplier`)
+  KEY `baduc_supplier_paid_1` (`idsupplier`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
--- Contenu de la table `h3d_paid_supplier`
+-- Contenu de la table `baduc_paid_supplier`
 --
 
-INSERT INTO `h3d_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VALUES
+INSERT INTO `baduc_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VALUES
 (1, 1, '2012-08-01', 2300000, 'được không ?'),
 (2, 1, '2012-07-03', 350000, 'Ghi chú gì đây'),
 (3, 1, '2012-07-26', 750000, 'Ghi ghi gì gì đó'),
@@ -473,10 +473,10 @@ INSERT INTO `h3d_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_r2c`
+-- Structure de la table `baduc_r2c`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_r2c` (
+CREATE TABLE IF NOT EXISTS `baduc_r2c` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_course` int(11) NOT NULL,
   `id_resource` int(11) NOT NULL,
@@ -490,10 +490,10 @@ CREATE TABLE IF NOT EXISTS `h3d_r2c` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_resource`
+-- Structure de la table `baduc_resource`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_resource` (
+CREATE TABLE IF NOT EXISTS `baduc_resource` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `idsupplier` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -501,14 +501,14 @@ CREATE TABLE IF NOT EXISTS `h3d_resource` (
   `price` int(10) NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `h3d_resource_1` (`idsupplier`)
+  KEY `baduc_resource_1` (`idsupplier`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=44 ;
 
 --
--- Contenu de la table `h3d_resource`
+-- Contenu de la table `baduc_resource`
 --
 
-INSERT INTO `h3d_resource` (`id`, `idsupplier`, `name`, `unit`, `price`, `description`) VALUES
+INSERT INTO `baduc_resource` (`id`, `idsupplier`, `name`, `unit`, `price`, `description`) VALUES
 (1, 1, 'Nước đá ống', 'Chai', 3000, 'Nước đá dùng để uống trà, cafe'),
 (2, 1, 'Nước đá ướp', 'kg', 8000, 'Dùng để ướp trái cây'),
 (3, 1, 'Nước đá viên', 'kg', 12000, 'Dùng uống tẩy'),
@@ -540,10 +540,10 @@ INSERT INTO `h3d_resource` (`id`, `idsupplier`, `name`, `unit`, `price`, `descri
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_session`
+-- Structure de la table `baduc_session`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_session` (
+CREATE TABLE IF NOT EXISTS `baduc_session` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idtable` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
@@ -560,14 +560,14 @@ CREATE TABLE IF NOT EXISTS `h3d_session` (
   PRIMARY KEY (`id`),
   KEY `idtable` (`idtable`),
   KEY `iduser` (`iduser`),
-  KEY `h3d_session_3` (`idcustomer`)
+  KEY `baduc_session_3` (`idcustomer`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1151 ;
 
 --
--- Contenu de la table `h3d_session`
+-- Contenu de la table `baduc_session`
 --
 
-INSERT INTO `h3d_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
+INSERT INTO `baduc_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
 (10, 4, 3, 1, '2013-04-01 14:30:00', '2013-04-01 22:00:00', 'phòng quạt', 1, 20000, 0, 0, 0, 40000),
 (11, 3, 3, 1, '2013-04-01 15:15:00', '2013-04-01 23:00:00', '', 1, 0, 0, 0, 0, 60000),
 (18, 42, 3, 1, '2013-04-01 16:45:00', '2013-04-02 11:00:00', 'phòng quạt', 1, 40000, 0, 0, 0, 128000),
@@ -1074,7 +1074,7 @@ INSERT INTO `h3d_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, 
 (670, 42, 3, 1, '2013-04-30 12:40:00', '2013-05-01 07:00:00', '', 1, 0, 0, 0, 0, 200000),
 (671, 4, 3, 1, '2013-04-30 12:50:00', '2013-04-30 20:10:00', 'phòng quạt', 1, 20000, 0, 0, 0, 40000),
 (672, 36, 3, 1, '2013-04-30 12:55:00', '2013-05-01 10:10:00', '', 1, 0, 0, 0, 0, 200000);
-INSERT INTO `h3d_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
+INSERT INTO `baduc_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
 (673, 43, 3, 1, '2013-04-30 13:10:00', '2013-05-01 18:15:00', '', 1, 0, 0, 0, 0, 343000),
 (674, 3, 3, 1, '2013-04-30 13:35:00', '2013-05-01 07:50:00', '', 1, 0, 0, 0, 0, 216000),
 (675, 4, 3, 1, '2013-04-30 14:10:00', '2013-04-30 21:30:00', 'phòng quạt', 1, 20000, 0, 0, 0, 40000),
@@ -1524,10 +1524,10 @@ INSERT INTO `h3d_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_session_detail`
+-- Structure de la table `baduc_session_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_session_detail` (
+CREATE TABLE IF NOT EXISTS `baduc_session_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idsession` int(11) NOT NULL,
   `idcourse` int(11) NOT NULL,
@@ -1539,10 +1539,10 @@ CREATE TABLE IF NOT EXISTS `h3d_session_detail` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=695 ;
 
 --
--- Contenu de la table `h3d_session_detail`
+-- Contenu de la table `baduc_session_detail`
 --
 
-INSERT INTO `h3d_session_detail` (`id`, `idsession`, `idcourse`, `count`, `price`) VALUES
+INSERT INTO `baduc_session_detail` (`id`, `idsession`, `idcourse`, `count`, `price`) VALUES
 (298, 18, 126, 1, 8000),
 (299, 33, 136, 1, 15000),
 (300, 33, 56, 1, 15000),
@@ -1896,10 +1896,10 @@ INSERT INTO `h3d_session_detail` (`id`, `idsession`, `idcourse`, `count`, `price
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_supplier`
+-- Structure de la table `baduc_supplier`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_supplier` (
+CREATE TABLE IF NOT EXISTS `baduc_supplier` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
@@ -1910,10 +1910,10 @@ CREATE TABLE IF NOT EXISTS `h3d_supplier` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Contenu de la table `h3d_supplier`
+-- Contenu de la table `baduc_supplier`
 --
 
-INSERT INTO `h3d_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VALUES
+INSERT INTO `baduc_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VALUES
 (1, 'Đại lý nước đá', '0703456456', 'Phường 4', 'Cung cấp nước đá', 0),
 (6, 'Coop Mart', '070', 'Vĩnh Long', 'Cung cấp mọi thứ', 0),
 (8, 'Nhà PP Đoan Trang', '0703 822 227 - ', '64/6N Trần Phú P4 TP Vĩnh Long', '', 0),
@@ -1922,10 +1922,10 @@ INSERT INTO `h3d_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_table`
+-- Structure de la table `baduc_table`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_table` (
+CREATE TABLE IF NOT EXISTS `baduc_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `iddomain` int(11) NOT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -1936,10 +1936,10 @@ CREATE TABLE IF NOT EXISTS `h3d_table` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=48 ;
 
 --
--- Contenu de la table `h3d_table`
+-- Contenu de la table `baduc_table`
 --
 
-INSERT INTO `h3d_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
+INSERT INTO `baduc_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
 (1, 1, 'Phòng 01', 0, '1'),
 (2, 1, 'Phòng 03', 0, '1'),
 (3, 1, 'Phòng 05', 0, '1'),
@@ -1974,10 +1974,10 @@ INSERT INTO `h3d_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_term`
+-- Structure de la table `baduc_term`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_term` (
+CREATE TABLE IF NOT EXISTS `baduc_term` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
@@ -1985,10 +1985,10 @@ CREATE TABLE IF NOT EXISTS `h3d_term` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `h3d_term`
+-- Contenu de la table `baduc_term`
 --
 
-INSERT INTO `h3d_term` (`id`, `name`, `type`) VALUES
+INSERT INTO `baduc_term` (`id`, `name`, `type`) VALUES
 (1, 'Tiền điện', 0),
 (2, 'Tiền nước', 0),
 (3, 'Tiền thuế', 0),
@@ -1998,30 +1998,30 @@ INSERT INTO `h3d_term` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_term_collect`
+-- Structure de la table `baduc_term_collect`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_term_collect` (
+CREATE TABLE IF NOT EXISTS `baduc_term_collect` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `h3d_term_collect`
+-- Contenu de la table `baduc_term_collect`
 --
 
-INSERT INTO `h3d_term_collect` (`id`, `name`) VALUES
+INSERT INTO `baduc_term_collect` (`id`, `name`) VALUES
 (1, 'Thu 1'),
 (2, 'Thu 2');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_tracking`
+-- Structure de la table `baduc_tracking`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_tracking` (
+CREATE TABLE IF NOT EXISTS `baduc_tracking` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
@@ -2029,10 +2029,10 @@ CREATE TABLE IF NOT EXISTS `h3d_tracking` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `h3d_tracking`
+-- Contenu de la table `baduc_tracking`
 --
 
-INSERT INTO `h3d_tracking` (`id`, `date_start`, `date_end`) VALUES
+INSERT INTO `baduc_tracking` (`id`, `date_start`, `date_end`) VALUES
 (1, '2013-01-01', '2013-01-31'),
 (2, '2013-02-01', '2013-02-28'),
 (3, '2013-03-01', '2013-03-31'),
@@ -2042,20 +2042,20 @@ INSERT INTO `h3d_tracking` (`id`, `date_start`, `date_end`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_type_room`
+-- Structure de la table `baduc_type_room`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_type_room` (
+CREATE TABLE IF NOT EXISTS `baduc_type_room` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `h3d_type_room`
+-- Contenu de la table `baduc_type_room`
 --
 
-INSERT INTO `h3d_type_room` (`id`, `name`) VALUES
+INSERT INTO `baduc_type_room` (`id`, `name`) VALUES
 (1, 'Đơn máy lạnh'),
 (2, 'Đôi máy lạnh'),
 (3, 'Đơn quạt');
@@ -2063,20 +2063,20 @@ INSERT INTO `h3d_type_room` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_unit`
+-- Structure de la table `baduc_unit`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_unit` (
+CREATE TABLE IF NOT EXISTS `baduc_unit` (
   `id` int(25) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
--- Contenu de la table `h3d_unit`
+-- Contenu de la table `baduc_unit`
 --
 
-INSERT INTO `h3d_unit` (`id`, `name`) VALUES
+INSERT INTO `baduc_unit` (`id`, `name`) VALUES
 (1, 'Ly'),
 (3, 'Chai'),
 (4, 'Lon'),
@@ -2089,10 +2089,10 @@ INSERT INTO `h3d_unit` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `h3d_user`
+-- Structure de la table `baduc_user`
 --
 
-CREATE TABLE IF NOT EXISTS `h3d_user` (
+CREATE TABLE IF NOT EXISTS `baduc_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -2109,10 +2109,10 @@ CREATE TABLE IF NOT EXISTS `h3d_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Contenu de la table `h3d_user`
+-- Contenu de la table `baduc_user`
 --
 
-INSERT INTO `h3d_user` (`id`, `name`, `email`, `pass`, `pass2`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
+INSERT INTO `baduc_user` (`id`, `name`, `email`, `pass`, `pass2`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
 (1, '', 'tuanbuithanh@gmail.com', 'WHa3/wsMpuVHlDy+Y8Zb+EDkccANR4eKdzU9/dqLRUc=', '', 1, ' ', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, ''),
 (2, '', 'chaunguyen.bdc@gmail.com', 'WHa3/wsMpuVHlDy+Y8Zb+EDkccANR4eKdzU9/dqLRUc=', '', 1, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, ''),
 (3, 'Phan Lê Hữu Phúc', 'phucphan.bdc@gmail.com', '2vzWwPC5YMAC7hCBFPvLnSMQ2kYm09i51mY00I8C8Cc=', 'StfvX8imOngLwC6S7cGFciW8Q4Vk8HCwJhGxQhGXaNbb9fPbt7CzDY2E/WZU5BT/TS+SfqLG1wl0IS3wgonH7A==', 0, ' ', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '123456789'),
@@ -6210,93 +6210,93 @@ INSERT INTO `w3d_user` (`id`, `email`, `pass`, `pass2`, `gender`, `note`, `datec
 --
 
 --
--- Contraintes pour la table `h3d_collect_customer`
+-- Contraintes pour la table `baduc_collect_customer`
 --
-ALTER TABLE `h3d_collect_customer`
-  ADD CONSTRAINT `h3d_customer_collect_1` FOREIGN KEY (`idcustomer`) REFERENCES `h3d_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_collect_customer`
+  ADD CONSTRAINT `baduc_customer_collect_1` FOREIGN KEY (`idcustomer`) REFERENCES `baduc_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_collect_general`
+-- Contraintes pour la table `baduc_collect_general`
 --
-ALTER TABLE `h3d_collect_general`
-  ADD CONSTRAINT `h3d_collect_general_1` FOREIGN KEY (`id_term`) REFERENCES `h3d_term_collect` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_collect_general`
+  ADD CONSTRAINT `baduc_collect_general_1` FOREIGN KEY (`id_term`) REFERENCES `baduc_term_collect` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_course`
+-- Contraintes pour la table `baduc_course`
 --
-ALTER TABLE `h3d_course`
-  ADD CONSTRAINT `h3d_course_1` FOREIGN KEY (`idcategory`) REFERENCES `h3d_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_course`
+  ADD CONSTRAINT `baduc_course_1` FOREIGN KEY (`idcategory`) REFERENCES `baduc_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_loan_employee`
+-- Contraintes pour la table `baduc_loan_employee`
 --
-ALTER TABLE `h3d_loan_employee`
-  ADD CONSTRAINT `h3d_employee_loan_1` FOREIGN KEY (`idemployee`) REFERENCES `h3d_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `h3d_loan_employee_1` FOREIGN KEY (`idemployee`) REFERENCES `h3d_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_loan_employee`
+  ADD CONSTRAINT `baduc_employee_loan_1` FOREIGN KEY (`idemployee`) REFERENCES `baduc_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `baduc_loan_employee_1` FOREIGN KEY (`idemployee`) REFERENCES `baduc_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_order_import`
+-- Contraintes pour la table `baduc_order_import`
 --
-ALTER TABLE `h3d_order_import`
-  ADD CONSTRAINT `h3d_order_import_1` FOREIGN KEY (`idsupplier`) REFERENCES `h3d_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_order_import`
+  ADD CONSTRAINT `baduc_order_import_1` FOREIGN KEY (`idsupplier`) REFERENCES `baduc_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_order_import_detail`
+-- Contraintes pour la table `baduc_order_import_detail`
 --
-ALTER TABLE `h3d_order_import_detail`
-  ADD CONSTRAINT `h3d_order_import_detail_1` FOREIGN KEY (`idorder`) REFERENCES `h3d_order_import` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `h3d_order_import_detail_2` FOREIGN KEY (`idresource`) REFERENCES `h3d_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_order_import_detail`
+  ADD CONSTRAINT `baduc_order_import_detail_1` FOREIGN KEY (`idorder`) REFERENCES `baduc_order_import` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `baduc_order_import_detail_2` FOREIGN KEY (`idresource`) REFERENCES `baduc_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_paid_employee`
+-- Contraintes pour la table `baduc_paid_employee`
 --
-ALTER TABLE `h3d_paid_employee`
-  ADD CONSTRAINT `h3d_employee_paid_1` FOREIGN KEY (`idemployee`) REFERENCES `h3d_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_paid_employee`
+  ADD CONSTRAINT `baduc_employee_paid_1` FOREIGN KEY (`idemployee`) REFERENCES `baduc_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_paid_general`
+-- Contraintes pour la table `baduc_paid_general`
 --
-ALTER TABLE `h3d_paid_general`
-  ADD CONSTRAINT `h3d_paid_general_1` FOREIGN KEY (`id_term`) REFERENCES `h3d_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_paid_general`
+  ADD CONSTRAINT `baduc_paid_general_1` FOREIGN KEY (`id_term`) REFERENCES `baduc_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_paid_other`
+-- Contraintes pour la table `baduc_paid_other`
 --
-ALTER TABLE `h3d_paid_other`
-  ADD CONSTRAINT `h3d_paid_other_1` FOREIGN KEY (`id_term`) REFERENCES `h3d_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_paid_other`
+  ADD CONSTRAINT `baduc_paid_other_1` FOREIGN KEY (`id_term`) REFERENCES `baduc_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_paid_supplier`
+-- Contraintes pour la table `baduc_paid_supplier`
 --
-ALTER TABLE `h3d_paid_supplier`
-  ADD CONSTRAINT `h3d_supplier_paid_1` FOREIGN KEY (`idsupplier`) REFERENCES `h3d_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_paid_supplier`
+  ADD CONSTRAINT `baduc_supplier_paid_1` FOREIGN KEY (`idsupplier`) REFERENCES `baduc_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_resource`
+-- Contraintes pour la table `baduc_resource`
 --
-ALTER TABLE `h3d_resource`
-  ADD CONSTRAINT `h3d_resource_1` FOREIGN KEY (`idsupplier`) REFERENCES `h3d_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_resource`
+  ADD CONSTRAINT `baduc_resource_1` FOREIGN KEY (`idsupplier`) REFERENCES `baduc_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_session`
+-- Contraintes pour la table `baduc_session`
 --
-ALTER TABLE `h3d_session`
-  ADD CONSTRAINT `h3d_session_1` FOREIGN KEY (`idtable`) REFERENCES `h3d_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `h3d_session_2` FOREIGN KEY (`iduser`) REFERENCES `h3d_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `h3d_session_3` FOREIGN KEY (`idcustomer`) REFERENCES `h3d_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_session`
+  ADD CONSTRAINT `baduc_session_1` FOREIGN KEY (`idtable`) REFERENCES `baduc_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `baduc_session_2` FOREIGN KEY (`iduser`) REFERENCES `baduc_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `baduc_session_3` FOREIGN KEY (`idcustomer`) REFERENCES `baduc_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_session_detail`
+-- Contraintes pour la table `baduc_session_detail`
 --
-ALTER TABLE `h3d_session_detail`
-  ADD CONSTRAINT `h3d_session_detail_1` FOREIGN KEY (`idsession`) REFERENCES `h3d_session` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `h3d_session_detail_2` FOREIGN KEY (`idcourse`) REFERENCES `h3d_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_session_detail`
+  ADD CONSTRAINT `baduc_session_detail_1` FOREIGN KEY (`idsession`) REFERENCES `baduc_session` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `baduc_session_detail_2` FOREIGN KEY (`idcourse`) REFERENCES `baduc_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `h3d_table`
+-- Contraintes pour la table `baduc_table`
 --
-ALTER TABLE `h3d_table`
-  ADD CONSTRAINT `h3d_table_1` FOREIGN KEY (`iddomain`) REFERENCES `h3d_domain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `baduc_table`
+  ADD CONSTRAINT `baduc_table_1` FOREIGN KEY (`iddomain`) REFERENCES `baduc_domain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `k3d_collect_customer`

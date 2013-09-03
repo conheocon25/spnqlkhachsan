@@ -7,9 +7,9 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblTable = "h3d_table";
-		$tblSession = "h3d_session";
-		$tblSessionDetail = "h3d_session_detail";
+		$tblTable = "baduc_table";
+		$tblSession = "baduc_session";
+		$tblSessionDetail = "baduc_session_detail";
 				
 		$selectAllStmt = sprintf("select * from %s", $tblTable);								
 		$selectStmt = sprintf("select * from %s where id=?", $tblTable);

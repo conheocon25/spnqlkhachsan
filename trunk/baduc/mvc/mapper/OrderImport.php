@@ -7,8 +7,8 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblOrderImport = "h3d_order_import";
-		$tblOrderImportDetail = "h3d_order_import_detail";
+		$tblOrderImport = "baduc_order_import";
+		$tblOrderImportDetail = "baduc_order_import_detail";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImport);
