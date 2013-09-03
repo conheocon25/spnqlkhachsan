@@ -19,22 +19,27 @@
 			//-------------------------------------------------------------
 			$mDomain = new \MVC\Mapper\Domain();
 			$mTable = new \MVC\Mapper\Table();
-			$mTypeRoom = new \MVC\Mapper\TypeRoom();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------	
-			$TypeRoomAll = $mTypeRoom->findAll();
 			$Domain = $mDomain->find($IdDomain);
-			$Table = $mTable->find($IdTable);			
-			$Title = mb_strtoupper("THIẾT LẬP / ".$Domain->getName()." / ".$Table->getName()." / CẬP NHẬT", 'UTF8');
+			$Table = $mTable->find($IdTable);
+			
+			$Title = mb_strtoupper($Table->getName(), 'UTF8');			
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("THIẾT LẬP", "/setting"),
+				array("KHU VỰC", "/setting/domain"),
+				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLTable())
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('Title', $Title);
 			$request->setObject('Table', $Table);
-			$request->setObject('TypeRoomAll', $TypeRoomAll);
-			$request->setProperty('URLHeader', $Domain->getURLTable());
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

@@ -21,15 +21,20 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Term = $mTerm->find($IdTerm);			
-			$Title = mb_strtoupper("THIẾT LẬP / ".$Term->getName()." / CẬP NHẬT", 'UTF8');
+			$Term = $mTerm->find($IdTerm);
+			$Title = mb_strtoupper($Term->getName(), 'UTF8');			
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("THIẾT LẬP", "/setting"),
+				array("DANH MỤC CHI", "/setting/termpaid")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject('Term', $Term);
+			//-------------------------------------------------------------						
+			$request->setObject('Term', $Term);			
 			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', '/setting#termpaid');
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

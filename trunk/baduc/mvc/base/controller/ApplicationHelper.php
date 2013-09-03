@@ -9,8 +9,7 @@
 	/*-----------------------------------------------------------------------------------*/				
 	class ApplicationHelper { 
 		private static $instance; 
-		
-		private $info = "data/info.xml"; 
+				
 		private $config = "data/settings.xml"; 
 		 
 		private function __construct() {} 
@@ -27,26 +26,9 @@
 			if ( ! is_null( $dsn ) ) { 
 				return; 
 			} 
-			$this->getOptions();
-			$this->getInfo();
+			$this->getOptions();			
 		}
-		
-		private function getInfo(){
-			$this->ensure( file_exists( "data/info.xml"  ), "Khong tim thay tap tin INFO");			
-			$info = @SimpleXml_load_file( "data/info.xml" );
-			
-			//Lấy về bản đồ điều khiển Controller
-			$map = new Info();
-
-			foreach ( $info->param as $line ){
-				$name = trim((string)$line->name);
-				$value = trim((string)$line->value);			
-				$map->addParam( $name, $value);
-			}
-			
-			\MVC\Base\ApplicationRegistry::setInfo( $map );
-		}
-		
+						
 		private function getOptions() { 
 			$this->ensure( file_exists( $this->config  ), 
                             "Could not find options file" );
