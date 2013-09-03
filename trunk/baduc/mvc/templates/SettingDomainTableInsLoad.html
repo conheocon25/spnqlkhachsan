@@ -23,8 +23,9 @@
 							<label class="control-label" for="Type">Loại</label>
 							<div class="controls">
 								<select name="Type" id="Type">
-									<option value="0">Thường</option>
-									<option value="1">VIP</option>
+									<option tal:repeat="Type TypeRoomAll" tal:attributes="value Type/getId">
+										<span tal:content="Type/getName" />
+									</option>
 								</select>
 							</div>
 						</div>

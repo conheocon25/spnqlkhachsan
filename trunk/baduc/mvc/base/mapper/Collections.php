@@ -6,7 +6,9 @@ require_once( "mvc/base/mapper/Collection.php");
 class AppCollection extends Collection implements \MVC\Domain\AppCollection {function targetClass( ) {return "\MVC\Domain\App";}}
 class UserCollection extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
 class DomainCollection extends Collection implements \MVC\Domain\DomainCollection {function targetClass( ) {return "\MVC\Domain\Domain";}}	
-class TableCollection extends Collection implements \MVC\Domain\TableCollection {function targetClass( ) {return "\MVC\Domain\Table";}}		
+class TableCollection extends Collection implements \MVC\Domain\TableCollection {function targetClass( ) {return "\MVC\Domain\Table";}}
+class TypeRoomCollection extends Collection implements \MVC\Domain\TypeRoomCollection {function targetClass( ) {return "\MVC\Domain\TypeRoom";}}		
+
 class SessionCollection extends Collection implements \MVC\Domain\SessionCollection {function targetClass( ) {return "\MVC\Domain\Session";}}			
 class SessionDetailCollection extends Collection implements \MVC\Domain\SessionDetailCollection {function targetClass( ) {return "\MVC\Domain\SessionDetail";}}
 class CategoryCollection extends Collection implements \MVC\Domain\CategoryCollection {function targetClass( ) {return "\MVC\Domain\Category";}}	
@@ -36,6 +38,6 @@ class TrackingStoreCollection extends Collection implements \MVC\Domain\Tracking
 
 class R2CCollection extends Collection implements \MVC\Domain\R2CCollection{function targetClass(){return "\MVC\Domain\R2C";}}
 class PageCollection extends Collection implements \MVC\Domain\PageCollection{function targetClass(){return "\MVC\Domain\Page";}}
-class TypeRoomCollection extends Collection implements \MVC\Domain\TypeRoomCollection{function targetClass(){return "\MVC\Domain\TypeRoom";}}
+class GuestCollection extends Collection implements \MVC\Domain\GuestCollection{function targetClass(){return "\MVC\Domain\Guest";}}
 
 ?>

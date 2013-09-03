@@ -14,6 +14,7 @@ interface AppFinder  extends Finder {}
 interface UserFinder  extends Finder {}
 interface DomainFinder  extends Finder {}
 interface TableFinder  extends Finder {}
+interface TypeRoomFinder  extends Finder {}
 interface SessionFinder  extends Finder {}
 interface SessionDetailFinder  extends Finder {}
 interface CategoryFinder  extends Finder {}
@@ -42,5 +43,5 @@ interface TrackingFinder extends Finder {}
 interface TrackingStoreFinder extends Finder {}
 
 interface R2CFinder extends Finder {}
-interface TypeRoomFinder extends Finder {}
+interface GuestFinder extends Finder {}
 ?>
