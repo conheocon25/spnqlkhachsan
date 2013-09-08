@@ -27,6 +27,18 @@
 									</a>
 								</li>
 								<li>
+									<a tal:attributes="href '/paid'">
+										<i class="icon-dollar" />
+										KHOẢN CHI
+									</a>
+								</li>
+								<li>
+									<a tal:attributes="href '/collect'">
+										<i class="icon-dollar" />
+										KHOẢN THU
+									</a>
+								</li>
+								<li>
 									<a tal:attributes="href '/report'">
 										<i class="icon-book" />
 										BÁO CÁO
@@ -64,6 +76,7 @@
 					</div>
 					<div class="span9">
 						<div class="content">
+							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
 							<center><img src="/data/images/bg_manager.jpg" width="50%" style="opacity:.25;"/></center>
 						</div>
 					</div>

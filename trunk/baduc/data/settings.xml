@@ -98,7 +98,9 @@
 		
 		<!-- ============================================================================== -->
 		<!-- PAID.GENERAL		 															-->
-		<!-- ============================================================================== -->								
+		<!-- ============================================================================== -->
+		<command name="Paid"><view>Paid</view></command>
+		
 		<command name="PaidGeneral"><view>PaidGeneral</view></command>
 		<command name="PaidGeneralInsLoad"><view>PaidGeneralInsLoad</view></command>
 		<command name="PaidGeneralInsExe"><view>PaidGeneralInsExe</view><status value="CMD_OK"><forward>PaidGeneral</forward></status></command>
@@ -152,8 +154,9 @@
 		<command name="CollectCustomerDelExe"><view>CollectCustomerDelExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
 		
 		<!-- ============================================================================== -->
-		<!-- COLLECT.GENERAL		 															-->
-		<!-- ============================================================================== -->								
+		<!-- COLLECT.GENERAL		 														-->
+		<!-- ============================================================================== -->
+		<command name="Collect"><view>Collect</view></command>
 		<command name="CollectGeneral"><view>CollectGeneral</view></command>
 		<command name="CollectGeneralInsLoad"><view>CollectGeneralInsLoad</view></command>
 		<command name="CollectGeneralInsExe"><view>CollectGeneralInsExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>

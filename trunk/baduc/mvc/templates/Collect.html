@@ -11,7 +11,14 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="span3">
-						<span metal:use-macro="mAdmin.xhtml/Menu"/>
+						<div class="menu">
+							<ul class="nav nav-list" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+								<li class="nav-header">KHOẢN THU</li>
+								<li>
+									<a tal:attributes="href '/collect/general'"><i class="icon-dollar" /> CHUNG</a>
+								</li>
+							</ul>							
+						</div>
 					</div>
 					<div class="span9">
 						<div class="content">

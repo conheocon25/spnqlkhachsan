@@ -22,10 +22,9 @@
 						<div class="control-group">
 							<label class="control-label" for="Type">Loại</label>
 							<div class="controls">
-								<select name="Type" id="Type">
-									<option tal:repeat="Type TypeRoomAll" tal:attributes="value Type/getId ;selected php:Table->getType()==Type->getId()">
-										<span tal:content="Type/getName" />
-									</option>
+								<select name="Type" id="Type" data-role="slider">
+									<option value="0" tal:attributes="selected Table/getType">Thường</option>
+									<option value="1" tal:attributes="selected Table/getType">VIP</option>
 								</select>
 							</div>
 						</div>

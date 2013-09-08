@@ -27,18 +27,22 @@
 								</thead>
 								<tbody>
 									<tr tal:repeat="Domain DomainAll1">
-										<td align="center">
-											<div class="text-center" tal:content="repeat/Domain/number" />
-										</td>
+										<td align="center"><div class="text-center" tal:content="repeat/Domain/number" /></td>
 										<td><a tal:attributes="href Domain/getURLUpdLoad"><div tal:content="Domain/getName" /></a></td>
-										<td><a class="btn" tal:attributes="href Domain/getURLTable"><span tal:content="Domain/getTableAll/count"/></a></td>
-										<td><a class="btn" tal:attributes="href Domain/getURLDelLoad"><span class="icon-remove"/></a></td>
+										<td>
+											<a class="btn" tal:attributes="href Domain/getURLTable">
+												<span tal:content="Domain/getTableAll/count"/>
+											</a>
+										</td>
+										<td>
+											<a class="btn" tal:attributes="href Domain/getURLDelLoad"><span class="icon-remove"/></a>
+										</td>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr>
 										<td colspan="4" align="center">
-											<a class="btn" href="/setting/domain/ins/load">
+											<a class="btn btn-primary" href="/setting/domain/ins/load">
 												<span class="icon-plus"/>Thêm mới
 											</a>
 										</td>
