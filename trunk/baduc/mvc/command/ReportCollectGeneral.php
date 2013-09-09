@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportDetail extends Command {
+	class ReportCollectGeneral extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,34 +11,30 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
-			$IdTrack = $request->getProperty("IdTrack");
-									
+			$IdTrack = $request->getProperty('IdTrack');
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();			
-												
+			$mTracking = new \MVC\Mapper\Tracking();
+			$mCollect = new \MVC\Mapper\CollectGeneral();
+			$mTerm = new \MVC\Mapper\TermCollect();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Tracking = $mTracking->find($IdTrack);
-			$TrackingAll = $mTracking->findAll();
-						
-			$DateCurrent = 'THÁNG '.\date("m/Y", strtotime($Tracking->getDateStart()));
-			$Title = $Tracking->getName();
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("BÁO CÁO", "/report")
-			);
+			$TermAll = $mTerm->findAll();
+			$Title = "TỔNG HỢP THU THÁNG ".\date("m", strtotime($Tracking->getDateStart()))."/".\date("Y", strtotime($Tracking->getDateStart()));
+			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('DateCurrent', $DateCurrent);
 			$request->setProperty('Title', $Title);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('TrackingAll', $TrackingAll);
-			$request->setObject('Tracking', $Tracking);						
+			$request->setProperty('DateCurrent', $DateCurrent);
+			$request->setObject('Tracking', $Tracking);
+			$request->setObject('TermAll', $TermAll);
 		}
 	}
 ?>

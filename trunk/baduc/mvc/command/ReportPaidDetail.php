@@ -10,24 +10,27 @@
 														
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdTrack = $request->getProperty('IdTrack');
-			$IdTerm = $request->getProperty('IdTerm');
+			//-------------------------------------------------------------						
+			$Date = $request->getProperty('Date');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();
+			//-------------------------------------------------------------						
 			$mPaid = new \MVC\Mapper\PaidGeneral();
-			$mTerm = new \MVC\Mapper\TermPaid();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Tracking = $mTracking->find($IdTrack);
-			$Term = $mTerm->find($IdTerm);
-			$TermAll = $mTerm->findAll();			
-			$Title = mb_strtoupper($Term->getName(), 'UTF8')." THÁNG ".\date("m", strtotime($Tracking->getDateStart()))."/".\date("Y", strtotime($Tracking->getDateStart()));
+			//-------------------------------------------------------------									
+			$Title = "CÁC KHOẢN CHI";
+			$PaidAll = $mPaid->findByTracking(array($Date, $Date));
+			$Sum = 0;
+			while ($PaidAll->valid()){
+				$Paid = $PaidAll->current();
+				$Sum += $Paid->getValue();
+				$PaidAll->next();
+			}
+			$NSum = new \MVC\Library\Number($Sum);
+			
 			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
 			
 			//-------------------------------------------------------------
@@ -35,9 +38,8 @@
 			//-------------------------------------------------------------									
 			$request->setProperty('Title', $Title);
 			$request->setProperty('DateCurrent', $DateCurrent);
-			$request->setObject('Tracking', $Tracking);
-			$request->setObject('Term', $Term);
-			$request->setProperty('URLHeader', $Tracking->getURLView() );
+			$request->setProperty('Sum', $NSum->formatCurrency()." đ" );
+			$request->setObject('PaidAll', $PaidAll);
 		}
 	}
 ?>

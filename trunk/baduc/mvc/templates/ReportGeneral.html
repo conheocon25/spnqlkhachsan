@@ -60,11 +60,19 @@
 			<td align="left"><span tal:content="Supplier/getName" /></td>
 			<td align="right"><span tal:content="php:Tracking->getOrderAllValuePrint( Supplier->getId() )" /></td>
 		</tr>
-		<tr> <td /> <td /></tr>		
-		<tr> <td /> <td /></tr>		
 		<tr> <td /> <td /></tr>
 		<tr>
-			<td align="left"><B>4. LÃI KINH DOANH</B></td>
+			<td align="left"><B>4. TỒN KHO</B></td>
+			<td align="right"><B tal:content="php:Tracking->getTrackingStoreValuePrint( )" /></td>
+		</tr>
+		<tr> <td /> <td /></tr>
+		<tr>
+			<td align="left"><B>5. KHẤU HAO TÀI SẢN</B></td>
+			<td align="right"><B tal:content="php:Tracking->getEstateRatePrint( )" /></td>
+		</tr>
+		<tr> <td /> <td /></tr>
+		<tr>
+			<td align="left"><B>6. SỐ DƯ CUỐI</B></td>
 			<td align="right"><H3 tal:content="php:Tracking->getValuePrint( )" /></td>
 		</tr>
 	</table>	
