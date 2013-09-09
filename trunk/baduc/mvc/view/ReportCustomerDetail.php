@@ -1,5 +1,7 @@
 <?php	
 	require_once("mvc/base/Viewer.php");
 	$Viewer = new Viewer("mvc/templates/ReportCustomerDetail.html");
-	echo $Viewer->pdfBD();
+	$Out = $Viewer->pdf();
+	unset($Viewer);
+	echo $Out;
 ?>

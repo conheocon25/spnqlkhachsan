@@ -1,5 +1,7 @@
 <?php
 	require_once("mvc/base/Viewer.php");
 	$Viewer = new Viewer("mvc/templates/SellingDomainTableMergeLoad.html");
-	echo $Viewer->html();
+	$Out = $Viewer->html();
+	unset($Viewer);
+	echo $Out;
 ?>

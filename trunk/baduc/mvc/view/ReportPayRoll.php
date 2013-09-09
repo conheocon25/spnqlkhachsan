@@ -1,5 +1,5 @@
 <?php	
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/ReportPaidPayRoll.html");
+	$Viewer = new Viewer("mvc/templates/ReportPayRoll.html");
 	echo $Viewer->pdf();
 ?>
