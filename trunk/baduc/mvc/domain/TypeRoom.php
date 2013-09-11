@@ -16,44 +16,34 @@ class TypeRoom extends Object{
 		
         parent::__construct( $Id );
     }
-    function getId() {
-        return $this->Id;
-    }	
-	function getIdPrint(){
-        return "t" . $this->getId();
-    }
+    function getId() {return $this->Id;}	
+	function getIdPrint(){return "t" . $this->getId();}
 	
-    function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }
-   
-	function getName( ) {
-        return $this->Name;
-    }
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}
 		
-	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-		
+	function getDefaultAll(){
+		$mCourseDefault = new \MVC\Mapper\CourseDefault();
+		$CDAll = $mCourseDefault->findBy( array($this->getId()) );
+		return $CDAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){		
-		return "/setting/typeroom/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){		
-		return "/setting/typeroom/".$this->getId()."/upd/exe";
-	}
+	function getURLUpdLoad(){	return "/setting/typeroom/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "/setting/typeroom/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){		
-		return "/setting/typeroom/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){		
-		return "/setting/typeroom/".$this->getId()."/del/exe";
-	}
-		
+	function getURLDelLoad(){	return "/setting/typeroom/".$this->getId()."/del/load";}
+	function getURLDelExe(){	return "/setting/typeroom/".$this->getId()."/del/exe";}
+	
+	function getURLCourseDefault(){	return "/setting/typeroom/".$this->getId()."/default";}
+	function getURLCourseDefaultInsLoad(){	return "/setting/typeroom/".$this->getId()."/default/ins/load";}
+	function getURLCourseDefaultInsExe(){	return "/setting/typeroom/".$this->getId()."/default/ins/exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

@@ -11,7 +11,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="span3">
-						<span metal:use-macro="mAdmin.xhtml/Menu"/>
+						
 					</div>
 					<div class="span9">												
 						<div class="content">
@@ -21,36 +21,31 @@
 									<tr>
 										<th width="30"><div class="text-center">STT</div></th>
 										<th>TÊN</th>
-										<th width="120">MÓN MẶC ĐỊNH</th>
+										<th width="120"><div class="text-right">SỐ LƯỢNG</div></th>
+										<th width="120"><div class="text-right">ĐƠN GIÁ</div></th>
 										<th width="30" />
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="TypeRoom TypeRoomAll1">
-										<td><div class="text-center" tal:content="repeat/TypeRoom/number" /></td>
-										<td><a tal:attributes="href TypeRoom/getURLUpdLoad"><div tal:content="TypeRoom/getName" /></a></td>
-										<td>
-											<a class="btn" tal:attributes="href TypeRoom/getURLCourseDefault">
-												<div tal:content="string:Xem" />
-											</a>
-										</td>
-										<td>
-											<a class="btn" tal:attributes="href TypeRoom/getURLDelLoad"><span class="icon-remove"/></a>
-										</td>
+									<tr tal:repeat="Detail TypeRoom/getDefaultAll">
+										<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
+										<td><a tal:attributes="href Detail/getURLUpdLoad"><div tal:content="Detail/getCourse/getName" /></a></td>
+										<td><div class="text-right" tal:content="Detail/getCountPrint" /></td>
+										<td><div class="text-right" tal:content="Detail/getPricePrint" /></td>
+										<td><a class="btn" tal:attributes="href Detail/getURLDelLoad"><span class="icon-remove"/></a></td>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr>
 										<td colspan="4" align="center">
-											<a class="btn btn-primary" href="/setting/typeroom/ins/load">
+											<a class="btn btn-primary" tal:attributes="href TypeRoom/getURLCourseDefaultInsLoad">
 												<span class="icon-plus"/>Thêm mới
 											</a>
 										</td>
 									</tr>
 								</tfoot>
-							</table>							
-							<span metal:use-macro="mAdmin.xhtml/PageBar"/>
-						</div>						
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

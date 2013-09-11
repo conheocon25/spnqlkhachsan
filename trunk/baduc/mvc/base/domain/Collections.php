@@ -5,7 +5,9 @@ interface AppCollection extends \Iterator {function add( Object $App );}
 interface UserCollection extends \Iterator {function add( Object $user );}
 interface DomainCollection extends \Iterator {function add( Object $domain );}
 interface TableCollection extends \Iterator {function add( Object $table );}
+
 interface TypeRoomCollection extends \Iterator {function add( Object $TypeRoom );}
+interface CourseDefaultCollection extends \Iterator {function add( Object $CourseDefault );}
 
 interface SessionCollection extends \Iterator {function add( Object $session );	}
 interface SessionDetailCollection extends \Iterator {function add( Object $SessionDetail );	}

@@ -190,7 +190,7 @@ RewriteRule ^collect/general/([0-9]+)/([0-9]+)/del/exe$		?cmd=CollectGeneralDelE
 RewriteRule ^setting$ 												?cmd=Setting [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CUSTOMER
+# SETTING.TYPEROOM
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/typeroom$ 										?cmd=SettingTypeRoom [L]
 RewriteRule ^setting/typeroom/page/([0-9]+)$ 						?cmd=SettingTypeRoom&Page=$1 [L]
@@ -200,6 +200,17 @@ RewriteRule ^setting/typeroom/([0-9]+)/upd/load$ 					?cmd=SettingTypeRoomUpdLoa
 RewriteRule ^setting/typeroom/([0-9]+)/upd/exe$ 					?cmd=SettingTypeRoomUpdExe&IdTypeRoom=$1 [L]
 RewriteRule ^setting/typeroom/([0-9]+)/del/load$ 					?cmd=SettingTypeRoomDelLoad&IdTypeRoom=$1 [L]
 RewriteRule ^setting/typeroom/([0-9]+)/del/exe$ 					?cmd=SettingTypeRoomDelExe&IdTypeRoom=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.TYPEROOM.COURSEDEFAULT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting/typeroom/([0-9]+)/default$ 							?cmd=SettingCourseDefault&IdTypeRoom=$1 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/default/ins/load$ 					?cmd=SettingCourseDefaultInsLoad&IdTypeRoom=$1 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/default/ins/exe$ 					?cmd=SettingCourseDefaultInsExe&IdTypeRoom=$1 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/default/([0-9]+)/upd/load$ 			?cmd=SettingCourseDefaultUpdLoad&IdTypeRoom=$1&IdCourseDefault=$2 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/default/([0-9]+)/upd/exe$ 			?cmd=SettingCourseDefaultUpdExe&IdTypeRoom=$1&IdCourseDefault=$2 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/default/([0-9]+)/del/load$ 			?cmd=SettingCourseDefaultDelLoad&IdTypeRoom=$1&IdCourseDefault=$2 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/default/([0-9]+)/del/exe$ 			?cmd=SettingCourseDefaultDelExe&IdTypeRoom=$1&IdCourseDefault=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING.CUSTOMER

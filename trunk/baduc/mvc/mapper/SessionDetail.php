@@ -17,7 +17,7 @@
  */
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
+class SessionDetail extends Mapper implements \MVC\Domain\SessionDetailFinder {
 
     function __construct() {
         parent::__construct();

@@ -278,7 +278,7 @@
 		<command name="SettingCategoryCourseRecipeDelExe"><view>SettingCategoryCourseRecipeDelExe</view><status value="CMD_OK"><forward>SettingCategoryCourseRecipe</forward></status></command>
 		
 		<!-- ============================================================================== -->
-		<!-- SETTING.SUPPLIER	 															-->
+		<!-- SETTING.TYPEROOM	 															-->
 		<!-- ============================================================================== -->		
 		<command name="SettingTypeRoom"><view>SettingTypeRoom</view></command>
 		<command name="SettingTypeRoomInsLoad"><view>SettingTypeRoomInsLoad</view></command>
@@ -287,7 +287,18 @@
 		<command name="SettingTypeRoomUpdExe"><view>SettingTypeRoomUpdExe</view><status value="CMD_OK"><forward>SettingTypeRoom</forward></status></command>
 		<command name="SettingTypeRoomDelLoad"><view>SettingTypeRoomDelLoad</view></command>
 		<command name="SettingTypeRoomDelExe"><view>SettingTypeRoomDelExe</view><status value="CMD_OK"><forward>SettingTypeRoom</forward></status></command>
-				
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.TYPEROOM.COURSEDEFAULT	 												-->
+		<!-- ============================================================================== -->		
+		<command name="SettingCourseDefault"><view>SettingCourseDefault</view></command>
+		<command name="SettingCourseDefaultInsLoad"><view>SettingCourseDefaultInsLoad</view></command>
+		<command name="SettingCourseDefaultInsExe"><view>SettingCourseDefaultInsExe</view><status value="CMD_OK"><forward>SettingCourseDefault</forward></status></command>
+		<command name="SettingCourseDefaultUpdLoad"><view>SettingCourseDefaultUpdLoad</view></command>
+		<command name="SettingCourseDefaultUpdExe"><view>SettingCourseDefaultUpdExe</view><status value="CMD_OK"><forward>SettingCourseDefault</forward></status></command>
+		<command name="SettingCourseDefaultDelLoad"><view>SettingCourseDefaultDelLoad</view></command>
+		<command name="SettingCourseDefaultDelExe"><view>SettingCourseDefaultDelExe</view><status value="CMD_OK"><forward>SettingCourseDefault</forward></status></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SETTING.SUPPLIER	 															-->
 		<!-- ============================================================================== -->		

@@ -7,7 +7,9 @@ class AppCollection extends Collection implements \MVC\Domain\AppCollection {fun
 class UserCollection extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
 class DomainCollection extends Collection implements \MVC\Domain\DomainCollection {function targetClass( ) {return "\MVC\Domain\Domain";}}	
 class TableCollection extends Collection implements \MVC\Domain\TableCollection {function targetClass( ) {return "\MVC\Domain\Table";}}
+
 class TypeRoomCollection extends Collection implements \MVC\Domain\TypeRoomCollection {function targetClass( ) {return "\MVC\Domain\TypeRoom";}}		
+class CourseDefaultCollection extends Collection implements \MVC\Domain\CourseDefaultCollection {function targetClass( ) {return "\MVC\Domain\CourseDefault";}}
 
 class SessionCollection extends Collection implements \MVC\Domain\SessionCollection {function targetClass( ) {return "\MVC\Domain\Session";}}			
 class SessionDetailCollection extends Collection implements \MVC\Domain\SessionDetailCollection {function targetClass( ) {return "\MVC\Domain\SessionDetail";}}
