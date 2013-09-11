@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingStoreUpdLoad extends Command {
+	class SettingTypeRoomUpdExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,25 +11,29 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdStore = $request->getProperty('IdStore');
+			$IdTypeRoom = $request->getProperty('IdTypeRoom');
+			$Name = $request->getProperty('Name');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mStore = new \MVC\Mapper\Store();
+			$mTypeRoom = new \MVC\Mapper\TypeRoom();
 								
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------							
-			$Store = $mStore->find($IdStore);			
-			$Title = mb_strtoupper("THIẾT LẬP / ".$Store->getName()." / CẬP NHẬT", 'UTF8');
-			
+			//-------------------------------------------------------------
+			if (!isset($Name))
+				return self::statuses('CMD_OK');
+				
+			$TypeRoom = $mTypeRoom->find($IdTypeRoom);
+			$TypeRoom->setName($Name);
+			$mTypeRoom->update($TypeRoom);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
-			$request->setObject('Store', $Store);			
-			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', '/setting#store');
+			//-------------------------------------------------------------			
+			
+			return self::statuses('CMD_OK');
 		}
 	}
 ?>

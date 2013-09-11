@@ -192,6 +192,18 @@ RewriteRule ^setting$ 												?cmd=Setting [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING.CUSTOMER
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting/typeroom$ 										?cmd=SettingTypeRoom [L]
+RewriteRule ^setting/typeroom/page/([0-9]+)$ 						?cmd=SettingTypeRoom&Page=$1 [L]
+RewriteRule ^setting/typeroom/ins/load$ 							?cmd=SettingTypeRoomInsLoad [L]
+RewriteRule ^setting/typeroom/ins/exe$ 								?cmd=SettingTypeRoomInsExe [L]
+RewriteRule ^setting/typeroom/([0-9]+)/upd/load$ 					?cmd=SettingTypeRoomUpdLoad&IdTypeRoom=$1 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/upd/exe$ 					?cmd=SettingTypeRoomUpdExe&IdTypeRoom=$1 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/del/load$ 					?cmd=SettingTypeRoomDelLoad&IdTypeRoom=$1 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/del/exe$ 					?cmd=SettingTypeRoomDelExe&IdTypeRoom=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.CUSTOMER
+#---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/customer$ 										?cmd=SettingCustomer [L]
 RewriteRule ^setting/customer/page/([0-9]+)$ 						?cmd=SettingCustomer&Page=$1 [L]
 RewriteRule ^setting/customer/ins/load$ 							?cmd=SettingCustomerInsLoad [L]

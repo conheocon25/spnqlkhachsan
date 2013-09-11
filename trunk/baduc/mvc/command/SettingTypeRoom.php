@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingTermCollect extends Command {
+	class SettingTypeRoom extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -20,7 +20,7 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
+			//-------------------------------------------------------------			
 			$TypeRoomAll = $mTypeRoom->findAll();
 			$CategoryAll = $mCategory->findAll();
 			$SupplierAll = $mSupplier->findAll();
@@ -33,26 +33,25 @@
 			$UserAll = $mUser->findAll();
 			$ConfigAll = $mConfig->findAll();
 			
-			$Title = "DANH MỤC THU";
+			$Title = "DANH MỤC MÓN";
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting")
 			);
-			
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$TermCollectAll1 = $mTermCollect->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($TermCollectAll->count(), $Config->getValue(), "/setting/termcollect" );
+			$TypeRoomAll1 = $mTypeRoom->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($TypeRoomAll->count(), $Config->getValue(), "/setting/TypeRoom" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'TermCollect');
+			$request->setProperty('ActiveAdmin', 'TypeRoom');
 			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('TermCollectAll1', $TermCollectAll1);
+			$request->setObject('TypeRoomAll1', $TypeRoomAll1);
+			$request->setObject('PN', $PN);
 			
 			$request->setObject('TypeRoomAll', $TypeRoomAll);
 			$request->setObject('CategoryAll', $CategoryAll);
@@ -65,7 +64,7 @@
 			$request->setObject('TermCollectAll', $TermCollectAll);
 			$request->setObject('UserAll', $UserAll);
 			$request->setObject('ConfigAll', $ConfigAll);
-									
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

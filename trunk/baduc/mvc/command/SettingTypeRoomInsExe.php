@@ -1,8 +1,8 @@
 <?php
 	namespace MVC\Command;	
-	class SettingStoreDelExe extends Command {
+	class SettingTypeRoomInsExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
-			require_once("mvc/base/domain/HelperFactory.php");
+			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
@@ -10,26 +10,29 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdStore = $request->getProperty('IdStore');
-						
+			//-------------------------------------------------------------						
+			$Name = $request->getProperty('Name');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mStore = new \MVC\Mapper\Store();
-								
+			$mTypeRoom = new \MVC\Mapper\TypeRoom();
+					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------							
-			$Store = $mStore->delete(array($IdStore));
-			
-			if (!isset($Store))
+			//-------------------------------------------------------------
+			if (!isset($Name)||$Name=="")
 				return self::statuses('CMD_OK');
-						
+				
+			$TypeRoom = new \MVC\Domain\TypeRoom(
+				null,
+				$Name
+			);			
+			$mTypeRoom->insert($TypeRoom);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			
+			//-------------------------------------------------------------			
 			return self::statuses('CMD_OK');
 		}
 	}

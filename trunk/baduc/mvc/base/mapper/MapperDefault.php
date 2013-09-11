@@ -1,4 +1,5 @@
-<?php	
+<?php
+	$mTypeRoom 		= new \MVC\Mapper\TypeRoom();
 	$mCategory 		= new \MVC\Mapper\Category();
 	$mEmployee 		= new \MVC\Mapper\Employee();
 	$mDomain 		= new \MVC\Mapper\Domain();

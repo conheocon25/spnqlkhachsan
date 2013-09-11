@@ -30,14 +30,16 @@
 								<thead>
 									<tr>										
 										<th>PHÒNG</th>
-										<th width="120">PHIẾU</th>
-										<th width="60">IN</th>
-										<th width="60">VÀO</th>
-										<th width="60">RA</th>
-										<th width="60">GỌI</th>
-										<th width="60">SỔ</th>
-										<th width="60">DỜI</th>										
-										<th width="60">GOM</th>
+										<th width="120"><div class="text-left">PHIẾU</div></th>
+										<th width="60"><div class="text-center">IN</div></th>
+										<th width="60"><div class="text-center">VÀO</div></th>
+										<th width="60"><div class="text-center">RA</div></th>
+										<th width="60"><div class="text-center">GỌI</div></th>
+										<th width="60" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+											<div class="text-center">SỔ</div>
+										</th>
+										<th width="60"><div class="text-center">DỜI</div></th>										
+										<th width="60"><div class="text-center">GOM</div></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -49,25 +51,39 @@
 											</a>
 										</td>
 										<td>
-											<a class="btn" tal:condition="Table/getSessionActive" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><span class="icon-print"/></a>
+											<div class="text-center">
+												<a class="btn" tal:condition="Table/getSessionActive" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><span class="icon-print"/></a>
+											</div>
 										</td>										
 										<td>
-											<a class="btn" tal:condition="not: Table/getSessionActive" tal:attributes="href Table/getURLCheckinExe"><span class="icon-arrow-right"/></a>
+											<div class="text-center">
+												<a class="btn" tal:condition="not: Table/getSessionActive" tal:attributes="href Table/getURLCheckinExe"><span class="icon-arrow-right"/></a>
+											</div>	
 										</td>
 										<td>
-											<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getSessionActive/getURLCheckoutExe"><span class="icon-arrow-left"/></a>
+											<div class="text-center">
+												<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getSessionActive/getURLCheckoutExe"><span class="icon-arrow-left"/></a>
+											</div>	
 										</td>
 										<td>
-											<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLCallLoad"><span class="icon-plus"/></a>
+											<div class="text-center">
+												<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLCallLoad"><span class="icon-plus"/></a>
+											</div>	
+										</td>
+										<td tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+											<div class="text-center">
+												<a class="btn" tal:attributes="href Table/getURLLog"><span class="icon-edit"/></a>
+											</div>	
 										</td>
 										<td>
-											<a class="btn" tal:attributes="href Table/getURLLog"><span class="icon-edit"/></a>
+											<div class="text-center">
+												<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLMoveLoad"><span class="icon-move"/></a>
+											</div>	
 										</td>
 										<td>
-											<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLMoveLoad"><span class="icon-move"/></a>
-										</td>
-										<td>
-											<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLMergeLoad"><span class="icon-resize-small"/></a>
+											<div class="text-center">
+												<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLMergeLoad"><span class="icon-resize-small"/></a>
+											</div>	
 										</td>
 									</tr>
 								</tbody>								

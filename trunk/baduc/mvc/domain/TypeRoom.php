@@ -41,17 +41,17 @@ class TypeRoom extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLUpdLoad(){		
-		return "/setting/TypeRoom/".$this->getId()."/upd/load";
+		return "/setting/typeroom/".$this->getId()."/upd/load";
 	}
 	function getURLUpdExe(){		
-		return "/setting/TypeRoom/".$this->getId()."/upd/exe";
+		return "/setting/typeroom/".$this->getId()."/upd/exe";
 	}
 	
 	function getURLDelLoad(){		
-		return "/setting/TypeRoom/".$this->getId()."/del/load";
+		return "/setting/typeroom/".$this->getId()."/del/load";
 	}
 	function getURLDelExe(){		
-		return "/setting/TypeRoom/".$this->getId()."/del/exe";
+		return "/setting/typeroom/".$this->getId()."/del/exe";
 	}
 		
 	//--------------------------------------------------------------------------

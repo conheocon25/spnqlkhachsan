@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingTermInsExe extends Command {
+	class SettingTypeRoomDelLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,32 +10,32 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
-			$Name = $request->getProperty('Name');
-			$Type = $request->getProperty('Type');
+			//-------------------------------------------------------------			
+			$IdTypeRoom = $request->getProperty('IdTypeRoom');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTerm = new \MVC\Mapper\TermPaid();
+			$mTypeRoom = new \MVC\Mapper\TypeRoom();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			if (!isset($Name)||$Name=="")
-				return self::statuses('CMD_OK');
-				
-			$Term = new \MVC\Domain\TermPaid(
-				null,
-				$Name,
-				$Type
-			);			
-			$mTerm->insert($Term);
+			//-------------------------------------------------------------							
+			$TypeRoom = $mTypeRoom->find($IdTypeRoom);			
+			
+			$Title = mb_strtoupper($TypeRoom->getName(), 'UTF8');
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("THIẾT LẬP", "/setting"),
+				array("DANH MỤC MÓN", "/setting/TypeRoom")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			return self::statuses('CMD_OK');
+			$request->setObject('TypeRoom', $TypeRoom);
+			$request->setProperty('Title', $Title);
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

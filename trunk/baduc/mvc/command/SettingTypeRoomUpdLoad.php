@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingStoreUpdExe extends Command {
+	class SettingTypeRoomUpdLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,31 +11,31 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdStore = $request->getProperty('IdStore');
-			$Name = $request->getProperty('Name');
-			$Note = $request->getProperty('Note');
+			$IdTypeRoom = $request->getProperty('IdTypeRoom');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mStore = new \MVC\Mapper\Store();
-			
-					
+			$mTypeRoom = new \MVC\Mapper\TypeRoom();
+								
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			if (!isset($Name))
-				return self::statuses('CMD_OK');
-				
-			$Store = $mStore->find($IdStore);
-			$Store->setName($Name);
-			$Store->setNote($Note);
-			$mStore->update($Store);
-						
+			//-------------------------------------------------------------							
+			$TypeRoom = $mTypeRoom->find($IdTypeRoom);			
+			
+			$Title = mb_strtoupper($TypeRoom->getName(), 'UTF8');
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("THIẾT LẬP", "/setting"),
+				array("DANH MỤC MÓN", "/setting/typeroom")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			return self::statuses('CMD_OK');
+			//-------------------------------------------------------------						
+			$request->setObject('TypeRoom', $TypeRoom);			
+			$request->setProperty('Title', $Title);
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

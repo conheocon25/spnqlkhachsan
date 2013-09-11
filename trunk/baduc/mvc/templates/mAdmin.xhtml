@@ -89,7 +89,12 @@
 							
 	<div metal:define-macro="Menu" class="menu">
 		<ul class="nav nav-list">
-			<li class="nav-header">THIẾT LẬP</li>																																						
+			<li class="nav-header">THIẾT LẬP</li>
+			<li tal:attributes="class php:ActiveAdmin=='TypeRoom'?'active':'disable'">
+				<a tal:attributes="href '/setting/typeroom'" >
+					<i class="icon-tags" />LOẠI PHÒNG<span class="badge badge-info pull-right" tal:content="TypeRoomAll/count"/>
+				</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
 				<a tal:attributes="href '/setting/category'" >
 					<i class="icon-beer" />DANH MỤC MÓN<span class="badge badge-info pull-right" tal:content="CategoryAll/count"/>

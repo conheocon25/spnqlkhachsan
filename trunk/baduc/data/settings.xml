@@ -280,6 +280,17 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING.SUPPLIER	 															-->
 		<!-- ============================================================================== -->		
+		<command name="SettingTypeRoom"><view>SettingTypeRoom</view></command>
+		<command name="SettingTypeRoomInsLoad"><view>SettingTypeRoomInsLoad</view></command>
+		<command name="SettingTypeRoomInsExe"><view>SettingTypeRoomInsExe</view><status value="CMD_OK"><forward>SettingTypeRoom</forward></status></command>
+		<command name="SettingTypeRoomUpdLoad"><view>SettingTypeRoomUpdLoad</view></command>
+		<command name="SettingTypeRoomUpdExe"><view>SettingTypeRoomUpdExe</view><status value="CMD_OK"><forward>SettingTypeRoom</forward></status></command>
+		<command name="SettingTypeRoomDelLoad"><view>SettingTypeRoomDelLoad</view></command>
+		<command name="SettingTypeRoomDelExe"><view>SettingTypeRoomDelExe</view><status value="CMD_OK"><forward>SettingTypeRoom</forward></status></command>
+				
+		<!-- ============================================================================== -->
+		<!-- SETTING.SUPPLIER	 															-->
+		<!-- ============================================================================== -->		
 		<command name="SettingSupplier"><view>SettingSupplier</view></command>
 		<command name="SettingSupplierInsLoad"><view>SettingSupplierInsLoad</view></command>
 		<command name="SettingSupplierInsExe"><view>SettingSupplierInsExe</view><status value="CMD_OK"><forward>SettingSupplier</forward></status></command>

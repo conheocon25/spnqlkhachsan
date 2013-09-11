@@ -14,12 +14,14 @@ class TypeRoom extends Mapper implements \MVC\Domain\TypeRoomFinder {
 		$updateStmt = sprintf("update %s set name=? where id=?", $tblTypeRoom);
 		$insertStmt = sprintf("insert into %s ( name) values(?)", $tblTypeRoom);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTypeRoom);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblTypeRoom);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
+		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		
     } 
     function getCollection( array $raw ) {
@@ -61,6 +63,13 @@ class TypeRoom extends Mapper implements \MVC\Domain\TypeRoomFinder {
 	
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
+	
+	function findByPage( $values ) {
+		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
+		$this->findByPageStmt->execute();
+        return new TypeRoomCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
 	
 }
 ?>
