@@ -46,7 +46,7 @@
 									<tr tal:repeat="Table Domain/getTableAll" tal:attributes="class php: Table->getSessionActive()!=null ? 'success':''">
 										<td><div tal:content="Table/getName" /></td>
 										<td>
-											<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getSessionActive/getURLDetail">
+											<a class="btn btn-primary" tal:condition="Table/getSessionActive" tal:attributes="href Table/getSessionActive/getURLDetail">
 												<span tal:content="Table/getSessionActive/getValuePrint" />
 											</a>
 										</td>

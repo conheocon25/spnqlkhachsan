@@ -182,7 +182,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getValue()
 		);
         $this->insertStmt->execute( $values );
-        $id = self::$PDO->lastInsertId();
+        $id = self::$PDO->lastInsertId();		
         $object->setId( $id );
     }
     

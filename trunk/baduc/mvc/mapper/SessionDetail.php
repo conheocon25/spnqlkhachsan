@@ -51,13 +51,9 @@ class SessionDetail extends Mapper implements \MVC\Domain\SessionDetailFinder {
 		
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSessionDetail);
 		
-		$findBySessionStmt = sprintf("
-			select
-				*
-			from %s
-			where idsession=?
-		", $tblSessionDetail);
-						
+		$findBySessionStmt = sprintf("select * from %s where idsession=?", $tblSessionDetail);
+		$findBySession1Stmt = sprintf("select * from %s where idsession=? AND price>0", $tblSessionDetail);
+		
 		$evaluateStmt = sprintf("
 			select sum(sd.count * price ) from %s sd where idsession=?
 		", $tblSessionDetail);
@@ -131,6 +127,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\SessionDetailFinder {
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
                             
 		$this->findBySessionStmt = self::$PDO->prepare($findBySessionStmt);		
+		$this->findBySession1Stmt = self::$PDO->prepare($findBySession1Stmt);
 		$this->evaluateStmt = self::$PDO->prepare( $evaluateStmt );		
 		$this->checkStmt = self::$PDO->prepare( $checkStmt);
 		$this->trackByCountStmt = self::$PDO->prepare( $trackByCountStmt);
@@ -179,22 +176,17 @@ class SessionDetail extends Mapper implements \MVC\Domain\SessionDetailFinder {
 	protected function doDelete(array $values) {
         return $this->deleteStmt->execute( $values );
     }
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
-	
-	/*
-    * Command	: findBySession	
-	* Input		: array($IdTable)
-	* Output	: list of SessionDetail
-	* Note		: Tìm về các chi tiết gọi món của bàn
-    */
+    function selectStmt() {return $this->selectStmt;}
+    function selectAllStmt() {return $this->selectAllStmt;}
+		
 	function findBySession( $values ) {	
         $this->findBySessionStmt->execute( $values );
         return new SessionDetailCollection( $this->findBySessionStmt->fetchAll(), $this );
+    }
+	
+	function findBySession1( $values ) {	
+        $this->findBySession1Stmt->execute( $values );
+        return new SessionDetailCollection( $this->findBySession1Stmt->fetchAll(), $this );
     }
 			
 	/*

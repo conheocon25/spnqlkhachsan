@@ -286,21 +286,26 @@ class Session extends Object{
 		$HCurrent = (\date("H", strtotime($Start)) + \date("i", strtotime($Start))/60.0);
 		$HD = ((strtotime($End) - strtotime($Start))/3600);
 		$DD = ((strtotime($End) - strtotime($Start))%3600)/60;		
-		if ($HD < 1) $HD = 1;
-		if ($DD >= 20) $HD = (int)($HD) + 1;
+		if ($HD < 1){ 
+			$HD = 1;
+			$DD = 0;
+		}
+		if ($DD >= 20){
+			$HD = (int)($HD) + 1;		
+		}
 		$HEnd = $HCurrent + $HD;
 		
 		//(1) TÍNH THEO GIỜ
-		if ($HD < 3.5){
-			if ($Type==2){
+		if ($HD < 3.5){			
+			if ($Type==2){				
 				if ($HCurrent <=6 || $HCurrent >=22)
 					$Value += $arrPriceNight[$Type];
 				else
 					$Value += $arrPriceDaily[$Type];
 			}
-			else
+			else{				
 				$Value += $arrPriceHour[$Type] + (int)($HD + 0.5 -1)*$arrPriceHourP[$Type];
-			
+			}
 		}
 		//(2) TÍNH THEO NGÀY / ĐÊM
 		else{
@@ -356,6 +361,12 @@ class Session extends Object{
 	function getDetails(){
 		$mSD = new \MVC\Mapper\SessionDetail();
 		$SDs = $mSD->findBySession(array($this->getId()));
+		return $SDs;
+	}
+	
+	function getDetailPrintAll(){
+		$mSD = new \MVC\Mapper\SessionDetail();
+		$SDs = $mSD->findBySession1(array($this->getId()));
 		return $SDs;
 	}
 	
@@ -434,45 +445,6 @@ class Session extends Object{
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}	
-    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
-	/*
-	if ($HD >=3.5){
-					//Tính phần cù trước 12h trưa
-					if ($HCurrent <= $Index*24 + 12){
-						$HD1 = 	$Index*24 + 12 - $HCurrent;
-						if ($HD1>=3.5)
-							$Value += $arrPriceDaily[$Type];
-						else{
-							$Value += $arrPriceDailyP[$Type]*(int)($HD1 + 0.5);
-						}
-						$HCurrent = $Index*24 + 12;
-					}
-					
-					//THUÊ NGÀY
-					if ($HCurrent <= ($Index*24 + 22)){ $Value += $arrPriceDaily[$Type];}
-					//THUÊ ĐÊM
-					else{ $Value += $arrPriceNight[$Type];}
-					
-					//TÍNH PHẠT THÊM
-					if ($HEnd >= ($Index*24 + 36 ) ){
-						if ($HEnd < ($Index*24 + 36 + 3.5) ){							
-							$Value += $arrPriceDailyP[$Type]*(int)($HEnd - ($Index*24 + 36) + 0.5);
-							$HCurrent = $HEnd;
-						}else{							
-							$HCurrent = $Index*24 + 36;
-						}
-					}else{
-						$HCurrent = $HEnd;
-					}
-					
-				}
-				//THUÊ GIỜ
-				else{
-					$Value = $arrPriceHour[$Type] + (int)($HD-1 + 0.5)*$arrPriceHourP[$Type];
-					$HCurrent = $HEnd;
-				}
-			}
-	
-	*/
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 }
 ?>

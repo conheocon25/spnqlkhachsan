@@ -34,7 +34,7 @@
 </font>
 <br/>
 <font size="9pt">
-	<span tal:condition="Session/getDetails/count">	
+	<span tal:condition="php: Session->getDetails()->count() > Session->getTable()->getTypeRoom()->getDefaultAll()->count()" >
 	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
 		<thead>
 			<tr>
@@ -45,11 +45,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr tal:repeat="Detail Session/getDetails">
+			<tr tal:repeat="Detail Session/getDetailPrintAll">
 				<td width="42%" align='left' tal:content="Detail/getCourse/getName" />
 				<td width="11%" align='right' tal:content="Detail/getCount" />
 				<td width="21%" align='right' tal:content="Detail/getPricePrint" />
-				<td width="26%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
+				<td width="26%" align='right'><span tal:content="Detail/getValuePrint" /></td>
 			</tr>		
 		</tbody>
 	</table>
@@ -63,7 +63,7 @@
 			</tr>
 			<tr tal:condition="Session/getDiscountValue">
 				<td align='right' colspan="5" width="100%">
-					<font align='right' size="10pt">Chiết khấu: <span tal:content="Session/getDiscountValuePrint" /></font>
+					<font align='right' size="12pt">Chiết khấu: <span tal:content="Session/getDiscountValuePrint" /></font>
 				</td>
 			</tr>	
 			<tr  tal:condition="Session/getDiscountPercent">

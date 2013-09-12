@@ -82,6 +82,12 @@ class Table extends Object{
         return $this->Type;
     }
 	
+	function getTypeRoom() {
+		$mType = new \MVC\Mapper\TypeRoom();
+		$Type = $mType->find($this->Type);		
+        return $Type;
+    }
+	
 	function getTypePrint() {
 		$mType = new \MVC\Mapper\TypeRoom();
 		$Type = $mType->find($this->Type);		
@@ -176,19 +182,11 @@ class Table extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE SETTING URL
 	//-------------------------------------------------------------------------------	
-	function getURLUpdLoad(){
-		return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){		
-		return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/exe";
-	}
+	function getURLUpdLoad(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){		
-		return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){
-		return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/exe";
-	}
+	function getURLDelLoad(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/load";}
+	function getURLDelExe(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/exe";}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL

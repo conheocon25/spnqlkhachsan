@@ -19,8 +19,8 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Title = "MODULE THIẾT LẬP";
+			//-------------------------------------------------------------						
+			$TypeRoomAll = $mTypeRoom->findAll();
 			$CategoryAll = $mCategory->findAll();
 			$SupplierAll = $mSupplier->findAll();
 			$DomainAll = $mDomain->findAll();			
@@ -47,6 +47,7 @@
 			$request->setProperty('ActiveAdmin', '');
 			$request->setObject('Navigation', $Navigation);
 			
+			$request->setObject('TypeRoomAll', $TypeRoomAll);
 			$request->setObject('CategoryAll', $CategoryAll);
 			$request->setObject('SupplierAll', $SupplierAll);
 			$request->setObject('DomainAll', $DomainAll);			

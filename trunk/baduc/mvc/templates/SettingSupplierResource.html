@@ -30,7 +30,9 @@
 								<thead>
 									<tr>
 										<th width="30">STT</th>
-										<th>TÊN</th>										
+										<th>TÊN</th>
+										<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
+										<th width="120"><div class="text-right">GIÁ NHẬP</div></th>
 										<th width="30">XÓA</th>
 									</tr>
 								</thead>								
@@ -38,6 +40,8 @@
 									<tr tal:repeat="Resource ResourceAll">
 										<td><div tal:content="repeat/Resource/number" /></td>
 										<td><a tal:attributes="href Resource/getURLUpdLoad"><div tal:content="Resource/getName"/></a></td>
+										<td><div tal:content="Resource/getUnit"/></td>
+										<td><div class="text-right" tal:content="Resource/getPricePrint"/></td>
 										<td>
 											<a class="btn" tal:attributes="href Resource/getURLDelLoad"><span class="icon-remove"/></a>
 										</td>
@@ -46,7 +50,7 @@
 								<tfoot>
 									<tr>
 										<td colspan="4" align="center">
-											<a class="btn" tal:attributes="href Supplier/getURLResourceInsLoad"><span class="icon-plus"/>Thêm mới</a>
+											<a class="btn btn-primary" tal:attributes="href Supplier/getURLResourceInsLoad"><span class="icon-plus"/>Thêm mới</a>
 										</td>
 									</tr>
 								</tfoot>								
