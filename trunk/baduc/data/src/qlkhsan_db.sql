@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 09, 2013 at 02:07 AM
+-- Generation Time: Sep 12, 2013 at 04:53 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -155,7 +155,7 @@ INSERT INTO `baduc_config` (`id`, `param`, `value`) VALUES
 (15, 'DOI_LANH_DEM', '210000'),
 (16, 'DOI_LANH_DEM_LO', '30000'),
 (17, 'ROW_PER_PAGE', '12'),
-(18, 'GUEST_VISIT', '28');
+(18, 'GUEST_VISIT', '51');
 
 -- --------------------------------------------------------
 
@@ -202,6 +202,31 @@ INSERT INTO `baduc_course` (`id`, `idcategory`, `name`, `shortname`, `unit`, `pr
 (136, 8, 'Red_Bull', 'Red_Bull', 'Lon', 15000, 0, 0, 0, ''),
 (139, 12, 'Mì Tôm', 'Mì Tôm', 'Tô', 10000, 0, 0, 0, ''),
 (140, 12, 'Mì Tôm Trứng', 'Mì Tôm Trứng', 'Tô', 15000, 0, 0, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `baduc_course_default`
+--
+
+CREATE TABLE IF NOT EXISTS `baduc_course_default` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_type_room` int(11) NOT NULL,
+  `id_course` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `price` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_type_room` (`id_type_room`),
+  KEY `id_course` (`id_course`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `baduc_course_default`
+--
+
+INSERT INTO `baduc_course_default` (`id`, `id_type_room`, `id_course`, `count`, `price`) VALUES
+(2, 1, 115, 2, 0),
+(3, 1, 54, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -292,14 +317,12 @@ CREATE TABLE IF NOT EXISTS `baduc_guest` (
   `exit_time` varchar(32) CHARACTER SET latin1 NOT NULL,
   `agent` varchar(16) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `baduc_guest`
 --
 
-INSERT INTO `baduc_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
-(7, '192.168.1.3', '1378685015', '1378688615', '192.168.1.3');
 
 -- --------------------------------------------------------
 
@@ -429,27 +452,6 @@ INSERT INTO `baduc_paid_general` (`id`, `id_term`, `date`, `value`, `note`) VALU
 (1, 1, '2013-04-10', 3500000, 'Thử 2'),
 (2, 1, '2013-04-08', 300000, 'Đóng tiền nước'),
 (3, 1, '2013-04-01', 2300000, 'Thử 2');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `baduc_paid_other`
---
-
-CREATE TABLE IF NOT EXISTS `baduc_paid_other` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_term` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `value` int(11) NOT NULL,
-  `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `baduc_paid_1` (`id_term`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `baduc_paid_other`
---
-
 
 -- --------------------------------------------------------
 
@@ -604,7 +606,7 @@ CREATE TABLE IF NOT EXISTS `baduc_session` (
   KEY `idtable` (`idtable`),
   KEY `iduser` (`iduser`),
   KEY `baduc_session_3` (`idcustomer`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1151 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1157 ;
 
 --
 -- Dumping data for table `baduc_session`
@@ -1244,7 +1246,9 @@ INSERT INTO `baduc_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`
 (1147, 17, 3, 1, '2013-05-20 02:20:00', '2013-05-20 02:35:00', 'phòng quạt', 1, 20000, 0, 0, 0, 40000),
 (1148, 3, 3, 1, '2013-05-20 04:40:00', '2013-05-20 05:00:00', 'phòng quạt', 1, 20000, 0, 0, 0, 40000),
 (1149, 16, 3, 1, '2013-05-20 05:15:00', '2013-05-20 05:30:00', 'phòng quạt', 1, 20000, 0, 0, 0, 40000),
-(1150, 17, 3, 1, '2013-05-20 05:15:00', '2013-05-20 05:30:00', '', 1, 0, 0, 0, 0, 60000);
+(1150, 17, 3, 1, '2013-05-20 05:15:00', '2013-05-20 05:30:00', '', 1, 0, 0, 0, 0, 60000),
+(1152, 2, 4, 1, '2013-09-12 16:57:27', NULL, '', 0, 0, 0, 0, 0, 60000),
+(1156, 3, 4, 1, '2013-09-12 17:05:00', '2013-09-12 17:45:00', '', 0, 20000, 0, 0, 0, 76000);
 
 -- --------------------------------------------------------
 
@@ -1261,7 +1265,7 @@ CREATE TABLE IF NOT EXISTS `baduc_session_detail` (
   PRIMARY KEY (`id`),
   KEY `idsession` (`idsession`),
   KEY `idcourse` (`idcourse`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=695 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=698 ;
 
 --
 -- Dumping data for table `baduc_session_detail`
@@ -1512,7 +1516,10 @@ INSERT INTO `baduc_session_detail` (`id`, `idsession`, `idcourse`, `count`, `pri
 (691, 1112, 53, 1, 12000),
 (692, 1136, 126, 1, 10000),
 (693, 1137, 126, 1, 10000),
-(694, 1142, 53, 3, 12000);
+(694, 1142, 53, 3, 12000),
+(695, 1156, 115, 2, 0),
+(696, 1156, 54, 2, 0),
+(697, 1156, 114, 2, 18000);
 
 -- --------------------------------------------------------
 
@@ -1671,7 +1678,7 @@ CREATE TABLE IF NOT EXISTS `baduc_type_room` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `baduc_type_room`
@@ -1763,6 +1770,13 @@ ALTER TABLE `baduc_course`
   ADD CONSTRAINT `baduc_course_1` FOREIGN KEY (`idcategory`) REFERENCES `baduc_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `baduc_course_default`
+--
+ALTER TABLE `baduc_course_default`
+  ADD CONSTRAINT `baduc_course_default_1` FOREIGN KEY (`id_type_room`) REFERENCES `baduc_type_room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `baduc_course_default_2` FOREIGN KEY (`id_course`) REFERENCES `baduc_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `baduc_order_import`
 --
 ALTER TABLE `baduc_order_import`
@@ -1786,12 +1800,6 @@ ALTER TABLE `baduc_paid_employee`
 --
 ALTER TABLE `baduc_paid_general`
   ADD CONSTRAINT `baduc_paid_general_1` FOREIGN KEY (`id_term`) REFERENCES `baduc_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `baduc_paid_other`
---
-ALTER TABLE `baduc_paid_other`
-  ADD CONSTRAINT `baduc_paid_other_1` FOREIGN KEY (`id_term`) REFERENCES `baduc_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `baduc_paid_supplier`
