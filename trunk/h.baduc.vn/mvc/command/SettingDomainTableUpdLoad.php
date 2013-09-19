@@ -19,14 +19,12 @@
 			//-------------------------------------------------------------
 			$mDomain = new \MVC\Mapper\Domain();
 			$mTable = new \MVC\Mapper\Table();
-			$mTypeRoom = new \MVC\Mapper\TypeRoom();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------	
 			$Domain = $mDomain->find($IdDomain);
 			$Table = $mTable->find($IdTable);
-			$TypeRoomAll = $mTypeRoom->findAll();
 			
 			$Title = mb_strtoupper($Table->getName(), 'UTF8');			
 			$Navigation = array(
@@ -41,7 +39,6 @@
 			//-------------------------------------------------------------			
 			$request->setProperty('Title', $Title);
 			$request->setObject('Table', $Table);
-			$request->setObject('TypeRoomAll', $TypeRoomAll);
 			$request->setObject('Navigation', $Navigation);
 		}
 	}

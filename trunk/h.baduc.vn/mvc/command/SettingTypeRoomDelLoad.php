@@ -27,7 +27,7 @@
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
-				array("DANH MỤC MÓN", "/setting/TypeRoom")
+				array("LOẠI PHÒNG", "/setting/typeroom")
 			);
 			
 			//-------------------------------------------------------------

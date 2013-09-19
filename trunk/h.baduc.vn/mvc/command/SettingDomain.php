@@ -21,7 +21,6 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$TypeRoomAll = $mTypeRoom->findAll();
 			$CategoryAll = $mCategory->findAll();
 			$SupplierAll = $mSupplier->findAll();
 			$DomainAll = $mDomain->findAll();			
@@ -53,7 +52,6 @@
 			$request->setObject('DomainAll1', $DomainAll1);
 			$request->setObject('PN', $PN);
 			
-			$request->setObject('TypeRoomAll', $TypeRoomAll);
 			$request->setObject('CategoryAll', $CategoryAll);
 			$request->setObject('SupplierAll', $SupplierAll);
 			$request->setObject('DomainAll', $DomainAll);			

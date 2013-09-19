@@ -19,8 +19,7 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$TypeRoomAll = $mTypeRoom->findAll();
+			//-------------------------------------------------------------			
 			$CategoryAll = $mCategory->findAll();
 			$SupplierAll = $mSupplier->findAll();
 			$DomainAll = $mDomain->findAll();			
@@ -44,10 +43,9 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', '');
+			$request->setProperty('ActiveAdmin', 'Setting');
 			$request->setObject('Navigation', $Navigation);
 			
-			$request->setObject('TypeRoomAll', $TypeRoomAll);
 			$request->setObject('CategoryAll', $CategoryAll);
 			$request->setObject('SupplierAll', $SupplierAll);
 			$request->setObject('DomainAll', $DomainAll);			
