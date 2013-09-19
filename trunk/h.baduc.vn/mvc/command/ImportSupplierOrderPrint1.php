@@ -31,6 +31,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("DateCurrent", $DateCurrent);
+			$request->setProperty('Title', "PHIẾU NHẬP HÀNG");
 			$request->setObject('OI', $OI);
 			$request->setObject('Supplier', $Supplier );
 		}

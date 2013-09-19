@@ -10,9 +10,9 @@
 		<div class="menu">
 			<div id="sidebar">
 				<ul style="display: block;">
-					<li tal:repeat="Customer1 CustomerAll" tal:attributes="class php:Customer1->getId()==Customer->getId()?'active':'disable'">
-						<a tal:attributes="href Customer1/getURLCollect">
-							<i class="icon-truck" /><span tal:content="Customer1/getName"/>							
+					<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+						<a tal:attributes="href Supplier1/getURLImport">
+							<i class="icon-truck" /><span tal:content="Supplier1/getName"/>							
 						</a>
 					</li>
 				</ul>
@@ -34,31 +34,43 @@
 									<table class="table table-bordered table-striped table-hover data-table">
 										<thead>
 											<tr>
-												<th width="30"><div class="text-center">STT</div></th>
-												<th width="120">NGÀY</th>
-												<th>DIỄN GIẢI</th>
-												<th width="120"><div class="text-right">GIÁ TRỊ</div></th>
-												<th width="30" />
+												<th width="30">STT</th>
+												<th width="120"><div class="text-left">NGÀY</div></th>
+												<th><div class="text-left">DIỄN GIẢI</div></th>
+												<th width="160"><div class="text-right">GIÁ TRỊ</div></th>
+												<th width="30">IN</th>
+												<th width="30">XÓA</th>
 											</tr>
 										</thead>								
-										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Collect CollectAll">
-												<td><div class="text-center" tal:content="repeat/Collect/number" /></td>
-												<td><a tal:attributes="href Collect/getURLUpdLoad"><div tal:content="Collect/getDatePrint"/></a></td>
-												<td><div tal:content="Collect/getNote"/></td>
-												<td><div class="text-right" tal:content="Collect/getValuePrint"/></td>
-												<td><a tal:attributes="href Collect/getURLDelLoad"><span class="icon-remove"/></a></td>
+										<tbody>
+											<tr tal:repeat="Order OrderAll">
+												<td><div tal:content="repeat/Order/number" /></td>
+												<td><a tal:attributes="href Order/getURLUpdLoad"><div tal:content="Order/getDatePrint"/></a></td>
+												<td align="left"><div tal:content="Order/getDescription"/></td>
+												<td align="right">
+													<a tal:attributes="href Order/getURLDetail">
+														<div tal:content="Order/getValuePrint"/>
+													</a>
+												</td>
+												<td>
+													<a target="blank" tal:attributes="href Order/getURLPrint">
+														<i class="icon-print"/>
+													</a>
+												</td>
+												<td>
+													<a tal:attributes="href Order/getURLDelLoad"><span class="icon-remove"/></a>
+												</td>
 											</tr>
-										</tbody>										
+										</tbody>
 									</table>
 									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
 										<div class="dataTables_filter">
 											<label style="margin-top:5px;">
-												<a tal:attributes="href Customer/getURLCollectInsLoad"><span class="icon-plus"/> Thêm mới</a>
+												<a tal:attributes="href Supplier/getURLImportInsLoad"><span class="icon-plus"/> Thêm mới</a>
 											</label>
 										</div>
 										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
-									</div>
+									</div>									
 								</div>  
 							</div>
 						</div>

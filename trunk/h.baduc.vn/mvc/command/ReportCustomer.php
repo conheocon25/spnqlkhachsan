@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class Report extends Command {
+	class ReportCustomer extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -9,26 +9,35 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 														
 			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐẾN
+			//-------------------------------------------------------------			
+			$IdTrack = $request->getProperty('IdTrack');
+			
+			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mTracking = new \MVC\Mapper\Tracking();
+			$mCustomer = new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracks = $mTracking->findAll();
-			$Title = "BÁO CÁO";			
+			$Tracking = $mTracking->find($IdTrack);
+			$CustomerAll = $mCustomer->findAll();			
+			$Title = "KHÁCH HÀNG";			
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app")
+				array("ỨNG DỤNG", "/app"),
+				array("BÁO CÁO", "/report"),
+				array($Tracking->getName(), $Tracking->getURLView() )
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
-			$request->setProperty('Title', $Title);						
-			$request->setProperty('ActiveAdmin', 'Report');
-			$request->setObject('Tracks', $Tracks);
+			//-------------------------------------------------------------									
+			$request->setProperty('Title', $Title);
+			$request->setObject('Tracking', $Tracking);
 			$request->setObject('Navigation', $Navigation);
+			$request->setObject('CustomerAll', $CustomerAll);
 		}
 	}
 ?>
