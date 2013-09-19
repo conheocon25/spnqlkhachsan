@@ -1,38 +1,50 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-<body>			
-	<!-- TRANG DOMAIN !-->
-	<div tal:attributes="id Domain/getIdPrint" data-role="page" class="type-interior" tal:repeat="Domain Domains">
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">				
-				<ul data-role="listview" data-theme="c" data-dividertheme="b">
-					<li data-role="list-divider" tal:content="php:'BÁN HÀNG / ' . mb_strtoupper(Domain->getName(),'UTF8')" />
-					<li tal:repeat="Table Domain/getTables" tal:attributes="data-theme php:Table->getSessionActive()?'e':'c'">					
-						<a tal:attributes="href Table/getURLDetail">
-							<span tal:content="Table/getName" />
-							<span class="ui-li-count" tal:content="Table/getSessionActive/getValuePrint|string:0 đ" />
-						</a>
-						<a data-ajax="false" tal:attributes="href Table/getURLLog" data-theme="c" data-icon="gear" />
-					</li>
-				</ul>
-			</div>
-			<div class="content-secondary">									
-				<ul data-role="listview" data-theme="c" data-dividertheme="d">
-					<li data-role="list-divider">BÁN HÀNG</li>
-					<li tal:repeat="Domain1 Domains1" tal:attributes="data-theme php:Domain1->getId()==Domain->getId()?'a':'c'">
-						<a data-transition="none" tal:attributes="href Domain1/getURLSelling">
-							<span tal:content="repeat/Domain1/number" />. <span tal:content="Domain1/getName" /> (<span tal:content="Domain1/getTables/count"/>)
-						</a>
-					</li>
-				</ul>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr role="row">
+												<th width="35">STT</th>
+												<th><div class="text-left">TÊN</div></th>
+												<th width="32"><i class="icon-trash my-ico"/></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="gradeA odd" tal:repeat="Domain DomainAll">
+												<td align="center" tal:content="repeat/Domain/number"/>
+												<td><a tal:attributes="href Domain/getURLSelling" ><span tal:content="Domain/getName"/></a></td>
+												<td align="center"><a tal:attributes="href Domain/getURLSelling"><i class="icon-shopping-cart"/></a></td>
+											</tr>											
+										</tbody>
+									</table>									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>				
-</body>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
 </html>

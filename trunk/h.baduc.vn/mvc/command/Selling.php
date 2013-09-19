@@ -1,43 +1,45 @@
-<?php
-	namespace MVC\Command;
+<?php		
+	namespace MVC\Command;	
 	class Selling extends Command {
-		function doExecute( \MVC\Controller\Request $request ) {
-			require_once("mvc/base/domain/HelperFactory.php");			
+		function doExecute( \MVC\Controller\Request $request ){
+			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
-			//-------------------------------------------------------------						
+			//-------------------------------------------------------------			
 			$Session = \MVC\Base\SessionRegistry::instance();
-									
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mDomain = new \MVC\Mapper\Domain();
-			$mTable = new \MVC\Mapper\Table();
-						
+			require_once("mvc/base/mapper/MapperDefault.php");
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Domains = $mDomain->findAll();
-			$Domains1 = $mDomain->findAll();
-			
-			$Tables1 = $mTable->findAllGuest(null);
-			$Tables2 = $mTable->findAllNonGuest(null);
-															
+			//-------------------------------------------------------------						
+			$DomainAll = $mDomain->findAll();			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('URLHeader', '/app');
-			$request->setObject("Domains", $Domains);
-			$request->setObject("Domains1", $Domains1);
-			$request->setObject("Tables1", $Tables1);
-			$request->setObject("Tables2", $Tables2);
+			$Title = "BÁN HÀNG";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app")				
+			);
 			
-			$request->setProperty('Custom1', $Tables1->count());
-			$request->setProperty('Custom2', $Tables2->count());
+			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐI
+			//-------------------------------------------------------------
+			$request->setProperty('Title', $Title);
+			$request->setProperty('ActiveAdmin', 'Selling');
+			$request->setObject('Navigation', $Navigation);
+			
+			$request->setObject('DomainAll', $DomainAll);			
+						
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>
