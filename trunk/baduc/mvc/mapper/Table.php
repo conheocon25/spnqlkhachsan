@@ -17,7 +17,7 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 		$insertStmt = sprintf("insert into %s (iddomain, name, iduser, type) values(?, ?, ?, ?)", $tblTable);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTable);
 		$findByDomainStmt = sprintf("select id, iddomain, name, iduser, type from %s where iddomain =?", $tblTable);
-		
+		$findByTypeStmt = sprintf("select id, iddomain, name, iduser, type from %s where type=?", $tblTable);
 		
 		$findNonGuestStmt = sprintf("
 							SELECT
@@ -89,17 +89,16 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 							
-		$this->findByDomainStmt = self::$PDO->prepare($findByDomainStmt);							
-		$this->findNonGuestStmt = self::$PDO->prepare($findNonGuestStmt);		
-		$this->findAllNonGuestStmt = self::$PDO->prepare($findAllNonGuestStmt);
-		$this->findGuestStmt = self::$PDO->prepare($findGuestStmt);
-		$this->findAllGuestStmt = self::$PDO->prepare($findAllGuestStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByDomainStmt 	= self::$PDO->prepare($findByDomainStmt);							
+		$this->findByTypeStmt 		= self::$PDO->prepare($findByTypeStmt);
+		$this->findNonGuestStmt 	= self::$PDO->prepare($findNonGuestStmt);		
+		$this->findAllNonGuestStmt 	= self::$PDO->prepare($findAllNonGuestStmt);
+		$this->findGuestStmt 		= self::$PDO->prepare($findGuestStmt);
+		$this->findAllGuestStmt 	= self::$PDO->prepare($findAllGuestStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 	
     } 
-    function getCollection( array $raw ) {
-        return new TableCollection( $raw, $this );
-    }
+    function getCollection( array $raw ) {return new TableCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Table( 
@@ -139,21 +138,18 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
         $this->updateStmt->execute( $values );
     }
 
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
 	
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
 	function findByDomain($values ) {	
         $this->findByDomainStmt->execute( $values );
         return new TableCollection( $this->findByDomainStmt->fetchAll(), $this );
+    }
+	function findByType($values ) {	
+        $this->findByTypeStmt->execute( $values );
+        return new TableCollection( $this->findByTypeStmt->fetchAll(), $this );
     }
 	function findNonGuest($values ) {	
         $this->findNonGuestStmt->execute( $values );

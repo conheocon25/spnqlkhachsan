@@ -31,6 +31,12 @@ class TypeRoom extends Object{
 		return $CDAll;
 	}
 	
+	function getTableAll(){
+		$mTable = new \MVC\Mapper\Table();
+		$TableAll = $mTable->findByType(array( $this->getId() ));
+		return $TableAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

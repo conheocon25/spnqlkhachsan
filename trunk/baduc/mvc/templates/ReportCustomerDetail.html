@@ -1,6 +1,19 @@
 <body>
 	<BR/>
-	<span metal:use-macro="mAdmin.xhtml/ReportHeader"/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B>KHÁCH SẠN BA ĐỨC</B></td>
+			<td width="50%" align="right"><B tal:content="Title"/></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">ĐC: 67/26B Phó Cơ Điều, P.4, TP.VL</td>
+			<td width="50%" align="right">Lưu hành nội bộ</td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">ĐT: (0703) 828 555</td>
+			<td width="50%" align="left" />
+		</tr>
+	</table>
 	<BR/>
 	<table width="100%" border="0" cellpadding="2" >		
 		<tr>
@@ -17,7 +30,11 @@
 		</tr>
 		<tr>
 			<th align="right" width="70%"><B>DƯ NỢ MỚI</B></th>
-			<th align="right" width="30%"><H3 tal:content="php:Tracking->getCustomerNewDebtPrint( Customer->getId() )" /></th>
+			<th align="right" width="30%">
+				<font color="red" size="12">
+					<b tal:content="php:Tracking->getCustomerNewDebtPrint( Customer->getId() )" />
+				</font>
+			</th>
 		</tr>		
 	</table>
 	<p /><p><b><font size="14">CHI TIẾT GIAO DỊCH TRONG KÌ</font></b></p>	

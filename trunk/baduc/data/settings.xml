@@ -68,10 +68,9 @@
 		<command name="ReportCourse"><view>ReportCourse</view></command>
 		<command name="ReportStore"><view>ReportStore</view></command>
 		<command name="ReportEvalStore"><view>ReportEvalStore</view></command>
-		<command name="ReportGeneral"><view>ReportGeneral</view></command>
+		<command name="ReportGeneral"><view>ReportGeneral</view></command>				
+		<command name="ReportHours"><view>ReportHours</view></command>
 		
-		<command name="ReportPaidPayRoll"><view>ReportPaidPayRoll</view></command>
-						
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->				

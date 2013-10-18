@@ -119,6 +119,7 @@ RewriteRule ^report/course/([a-z0-9]+)$ 				?cmd=ReportCourse&IdTrack=$1 [L]
 RewriteRule ^report/general/([a-z0-9]+)$ 				?cmd=ReportGeneral&IdTrack=$1 [L]
 
 RewriteRule ^report/form/store/print$ 					?cmd=ReportFormStorePrint [L]
+RewriteRule ^report/hours/([0-9]+)$ 					?cmd=ReportHours&IdTrack=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # PAID.GENERAL
