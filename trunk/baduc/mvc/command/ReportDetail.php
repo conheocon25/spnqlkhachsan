@@ -26,8 +26,7 @@
 						
 			$DateCurrent = 'THÁNG '.\date("m/Y", strtotime($Tracking->getDateStart()));
 			$Title = $Tracking->getName();
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("BÁO CÁO", "/report")
 			);
 			

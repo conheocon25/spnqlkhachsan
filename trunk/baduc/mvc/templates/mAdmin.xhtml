@@ -204,6 +204,11 @@
 					<i class="glyphicons-disk_open" />DANH MỤC CHI
 				</a>
 			</li>
+			<li tal:attributes="class php:ActiveAdmin=='TypeRoom'?'active':'disable'">
+				<a tal:attributes="href '/setting/typeroom'">
+					<i class="glyphicons-tag" />LOẠI PHÒNG
+				</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
 				<a tal:attributes="href '/setting/config'">
 					<i class="glyphicons-cogwheel" />CẤU HÌNH

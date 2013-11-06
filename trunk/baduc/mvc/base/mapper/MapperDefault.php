@@ -3,7 +3,8 @@
 	$mCategory 		= new \MVC\Mapper\Category();
 	$mEmployee 		= new \MVC\Mapper\Employee();
 	$mDomain 		= new \MVC\Mapper\Domain();
-	$mSupplier 		= new \MVC\Mapper\Supplier();			
+	$mSupplier 		= new \MVC\Mapper\Supplier();
+	$mResource 		= new \MVC\Mapper\Resource();
 	$mUnit 			= new \MVC\Mapper\Unit();
 	$mCustomer 		= new \MVC\Mapper\Customer();
 	$mTermPaid 		= new \MVC\Mapper\TermPaid();

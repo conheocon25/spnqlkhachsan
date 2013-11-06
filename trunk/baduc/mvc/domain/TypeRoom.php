@@ -21,7 +21,20 @@ class TypeRoom extends Object{
 	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
-		
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),			
+			'Name'			=> $this->getName()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){
+        $this->Id = $Data[0];
+		$this->Name = $Data[1];		
+    }
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -39,13 +52,7 @@ class TypeRoom extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){	return "/setting/typeroom/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/typeroom/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){	return "/setting/typeroom/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/typeroom/".$this->getId()."/del/exe";}
-	
+	//-------------------------------------------------------------------------------		
 	function getURLCourseDefault(){	return "/setting/typeroom/".$this->getId()."/default";}
 	function getURLCourseDefaultInsLoad(){	return "/setting/typeroom/".$this->getId()."/default/ins/load";}
 	function getURLCourseDefaultInsExe(){	return "/setting/typeroom/".$this->getId()."/default/ins/exe";}

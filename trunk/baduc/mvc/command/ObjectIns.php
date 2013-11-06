@@ -1,34 +1,38 @@
 <?php
 	namespace MVC\Command;	
-	class SignoutLoad extends Command {
+	class ObjectIns extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
-			require_once("mvc/base/domain/HelperFactory.php");			
+			require_once("mvc/base/domain/HelperFactory.php");	
+			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------						
 			$Session = \MVC\Base\SessionRegistry::instance();
-									
+
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$ObjectName = $request->getProperty('ObjectName');
+			$Data = $request->getProperty('Data');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			
-			
+			//-------------------------------------------------------------
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Title = "THOÁT KHỎI HỆ THỐNG";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app")				
-			);
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder($ObjectName);
+			$Domain		= \MVC\Domain\HelperFactory::getModel($ObjectName);
+			$Domain->setArray($Data);
+			$mMapper->insert($Domain);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty("Title", $Title);
-			$request->setObject("Navigation", $Navigation);
+						
+			$json = array('result' => "OK");
+			echo json_encode($json);
 		}
 	}
 ?>

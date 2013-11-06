@@ -1,12 +1,11 @@
 <?php
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
-
 class TrackingStore extends Object{
 
     private $Id;
 	private $IdTracking;
-	private $IdResource;
+	private $IdCourse;
 	private $CountOld;
 	private $CountImport;
 	private $CountExport;	
@@ -18,7 +17,7 @@ class TrackingStore extends Object{
     function __construct( 
 		$Id=null, 
 		$IdTracking=null, 
-		$IdResource=null, 
+		$IdCourse=null, 
 		$CountOld=null, 
 		$CountImport=null, 
 		$CountExport=null, 		
@@ -26,7 +25,7 @@ class TrackingStore extends Object{
 	) {
         $this->Id = $Id;
 		$this->IdTracking = $IdTracking;
-		$this->IdResource = $IdResource;
+		$this->IdCourse = $IdCourse;
 		$this->CountOld = $CountOld;
 		$this->CountImport = $CountImport;
 		$this->CountExport = $CountExport;
@@ -41,9 +40,9 @@ class TrackingStore extends Object{
     function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking;$this->markDirty();}   
 	function getIdTracking( ) {return $this->IdTracking;}
 	
-	function setIdResource( $IdResource ) {$this->IdResource = $IdResource;$this->markDirty();}   
-	function getIdResource( ) {return $this->IdResource;}
-	function getResource(){ $mResource = new \MVC\Mapper\Resource(); $Resource = $mResource->find( $this->getIdResource() ); return $Resource;}
+	function setIdCourse( $IdCourse ) {$this->IdCourse = $IdCourse;$this->markDirty();}   
+	function getIdCourse( ) {return $this->IdCourse;}
+	function getCourse(){ $mCourse = new \MVC\Mapper\Course(); $Course = $mCourse->find( $this->getIdCourse() ); return $Course;}
 	
 	function setCountOld( $CountOld ) {$this->CountOld = $CountOld;$this->markDirty();}   
 	function getCountOld( ) {return $this->CountOld;}
@@ -81,9 +80,12 @@ class TrackingStore extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-		
+	function getURLUpdLoad(){	return "/report/store/".$this->getIdTracking()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "/report/store/".$this->getIdTracking()."/".$this->getId()."/upd/exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
+	
 }
 ?>

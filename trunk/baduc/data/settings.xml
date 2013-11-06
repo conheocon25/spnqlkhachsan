@@ -109,6 +109,7 @@
 		<command name="SettingCategoryCourse"><view>SettingCategoryCourse</view></command>		
 		<command name="SettingCategoryCourseRecipe"><view>SettingCategoryCourseRecipe</view></command>		
 		<command name="SettingSupplier"><view>SettingSupplier</view></command>
+		<command name="SettingTypeRoom"><view>SettingTypeRoom</view></command>
 		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
 		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>

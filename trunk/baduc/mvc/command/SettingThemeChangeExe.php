@@ -1,37 +1,36 @@
 <?php
-	namespace MVC\Command;	
-	class Paid extends Command {
+	namespace MVC\Command;
+	class SettingThemeChangeExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------						
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$Theme = $request->getProperty("Theme");
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-						
+			$mConfig = new \MVC\Mapper\Config();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Title = "KHOẢN CHI";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app")				
-			);
+			//-------------------------------------------------------------
+			$Session->setCurrentTheme($Theme);
+			$Config = $mConfig->findByName("THEME");
+			$Config->setValue($Theme);
+			$mConfig->update($Config);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------																		
-			$request->setProperty('Title', $Title );
-			$request->setProperty('ActiveAdmin', 'TermPaid' );
-			$request->setObject("Navigation", $Navigation);
-			
-			return self::statuses('CMD_DEFAULT');
+			//-------------------------------------------------------------												
+						
+			return self::statuses('CMD_OK');
 		}
 	}
 ?>
