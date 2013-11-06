@@ -31,7 +31,7 @@
 			$DomainAll = $mDomain->findAll();
 			$CustomerAll = $mCustomer->findAll();
 			
-			$Title = "ỨNG DỤNG";
+			$Title = "";
 			$Navigation = array();
 			
 			//-------------------------------------------------------------

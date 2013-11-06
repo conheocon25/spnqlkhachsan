@@ -4,6 +4,7 @@
 	$mEmployee 		= new \MVC\Mapper\Employee();
 	$mDomain 		= new \MVC\Mapper\Domain();
 	$mSupplier 		= new \MVC\Mapper\Supplier();
+	$mOrderImport 	= new \MVC\Mapper\OrderImport();
 	$mResource 		= new \MVC\Mapper\Resource();
 	$mUnit 			= new \MVC\Mapper\Unit();
 	$mCustomer 		= new \MVC\Mapper\Customer();

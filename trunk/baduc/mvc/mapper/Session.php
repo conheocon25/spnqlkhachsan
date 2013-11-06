@@ -1,8 +1,7 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
-class Session extends Mapper implements \MVC\Domain\SessionFinder {
+class Session extends Mapper implements \MVC\Domain\SessionFinder{
 
     function __construct() {
         parent::__construct();
@@ -12,13 +11,12 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSession);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSession);
-		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=?, value=? where id=?", $tblSession);
-		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment, value) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
+		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=? where id=?", $tblSession);
+		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSession);
 		
 		$trackingCountStmt = sprintf(		
-							"
-							SELECT 
+							"SELECT 
 								sum(TIMESTAMPDIFF(HOUR,datetime,datetimeend))
 							FROM %s S
 							where
@@ -156,8 +154,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$array['discount_value'],
 			$array['discount_percent'],
 			$array['surtax'],
-			$array['payment'],
-			$array['value']
+			$array['payment']			
 		);
         return $obj;
     }
@@ -178,8 +175,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountValue(),
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
-			$object->getPayment(),
-			$object->getValue()
+			$object->getPayment()			
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();		
@@ -198,24 +194,14 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountValue(),
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
-			$object->getPayment(),
-			$object->getValue(),
+			$object->getPayment(),			
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
     }
-
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-	
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
 	function findLast( $values ) {	
         $this->findLastStmt->execute( $values );
