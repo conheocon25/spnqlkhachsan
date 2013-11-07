@@ -21,13 +21,11 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		
 		$evalPriceStmt = sprintf("
 			SELECT 
-				avg(OD.price) 
+				avg(price) 
 			FROM
-				%s O INNER JOIN %s OD ON O.id = OD.idorder
-			WHERE OD.idresource=? AND O.date>=? AND O.date<=?
-			GROUP BY
-				OD.idresource
-		", $tblOrderImport, $tblOrderImportDetail);
+				%s
+			WHERE 	idresource=?
+		", $tblOrderImportDetail);
 		
 		$trackByCountStmt = sprintf("
 			select 
@@ -62,9 +60,9 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			select
 				sum(SD.count) as count
 			from
-				baduc_session S inner join baduc_session_detail SD on S.id = SD.idsession
+				h3d_session S inner join h3d_session_detail SD on S.id = SD.idsession
 			where
-				SD.idcourse IN(select id_course from baduc_r2c where id_resource=?) AND
+				SD.idcourse IN(select id_course from h3d_r2c where id_resource=?) AND
 				S.datetime >= ? AND S.datetime <= ? 
 		", $tblSessionDetail, $tblR2C);
 		

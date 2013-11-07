@@ -66,11 +66,13 @@
 		<div id="user-nav">			
             <ul class="btn-group">
 				<li class="btn">
-					<a><i class="glyphicons-wifi" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a>
+					<a><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a>
 				</li>
-                <li class="btn"><a class="tip-bottom" data-original-title="Click để đăng xuất" href="/signout/exe">
-					<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
-				</a></li>
+                <li class="btn">
+					<a data-original-title="Click để đăng xuất" href="/signout/exe">
+						<i class="glyphicons-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
+					</a>
+				</li>
             </ul>
         </div>
 	</div>
@@ -258,23 +260,6 @@
 			</tr>
 		</table>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- ALERT TOOLS															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="AlertTools">		
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Insert'?true:false" type="text/javascript">
-			/*<![CDATA[*/$.gritter.add({title: 'Thêm mới hoàn tất', text: 'Đã thêm mới dữ liệu', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/
-		</script>
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Update'?true:false" type="text/javascript">
-			/*<![CDATA[*/$.gritter.add({title: 'Chỉnh sửa hoàn tất', text: 'Đã cập nhật dữ liệu mới nhất', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/
-		</script>
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Delete'?true:false" type="text/javascript">
-			/*<![CDATA[*/
-				$.gritter.add({title: 'Gỡ bỏ hoàn tất', text: 'Đã xóa dữ liệu vừa chọn', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});
-			/*]]>*/
-		</script>
-	</div>
-	
+			
 </body>
 </html>

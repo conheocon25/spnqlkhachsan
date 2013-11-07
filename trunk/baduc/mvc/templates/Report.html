@@ -68,6 +68,12 @@
 												<input id="DateEnd1" name="DateEnd1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="control-label">Khấu hao TSCĐ</label>
+											<div class="controls">
+												<input id="EstateRate1" name="EstateRate1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -117,6 +123,12 @@
 											<label class="control-label">Kết thúc</label>
 											<div class="controls">
 												<input id="DateEnd2" name="DateEnd2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Khấu hao TSCĐ</label>
+											<div class="controls">
+												<input id="EstateRate2" name="EstateRate2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>									
@@ -186,6 +198,15 @@
 				Data[0] = 'null';
 				Data[1] = $('#DateStart1').val();
 				Data[2] = $('#DateEnd1').val();
+				Data[3] = 0;
+				Data[4] = 0;
+				Data[5] = 0;
+				Data[6] = 0;
+				Data[7] = 0;
+				Data[8] = 0;
+				Data[9] = 0;
+				Data[10] = $('#EstateRate1').val();;
+				Data[11] = 0;
 				
 				var URL = "/object/ins/Tracking";
 				$.ajax({
@@ -210,6 +231,7 @@
 					$('#URLUpdButton').attr('alt', data.Id);
 					$('#DateStart2').attr('value', data.DateStart);
 					$('#DateEnd2').attr('value', data.DateEnd);
+					$('#EstateRate2').attr('value', data.EstateRate);
 				});
 			});
 			
@@ -221,6 +243,15 @@
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#DateStart2').val();
 				Data[2] = $('#DateEnd2').val();
+				Data[3] = 0;
+				Data[4] = 0;
+				Data[5] = 0;
+				Data[6] = 0;
+				Data[7] = 0;
+				Data[8] = 0;
+				Data[9] = 0;
+				Data[10] = $('#EstateRate2').val();;
+				Data[11] = 0;
 				
 				var URL = "/object/upd/Tracking";
 				$.ajax({

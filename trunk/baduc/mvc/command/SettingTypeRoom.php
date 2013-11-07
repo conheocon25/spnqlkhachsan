@@ -20,51 +20,27 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$TypeRoomAll = $mTypeRoom->findAll();
-			$CategoryAll = $mCategory->findAll();
-			$SupplierAll = $mSupplier->findAll();
-			$DomainAll = $mDomain->findAll();			
-			$EmployeeAll = $mEmployee->findAll();
-			$UnitAll = $mUnit->findAll();			
-			$CustomerAll = $mCustomer->findAll();
-			$TermPaidAll = $mTermPaid->findAll();
-			$TermCollectAll = $mTermCollect->findAll();			
-			$UserAll = $mUser->findAll();
-			$ConfigAll = $mConfig->findAll();
-			
-			$Title = "DANH MỤC MÓN";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			//-------------------------------------------------------------												
+			$Title = "LOẠI PHÒNG";
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$TypeRoomAll1 = $mTypeRoom->findByPage(array($Page, $Config->getValue() ));
+			$TypeRoomAll 	= $mTypeRoom->findAll();
+			$TypeRoomAll1 	= $mTypeRoom->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($TypeRoomAll->count(), $Config->getValue(), "/setting/TypeRoom" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'TypeRoom');
-			$request->setProperty('Page', $Page);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('TypeRoomAll1', $TypeRoomAll1);
-			$request->setObject('PN', $PN);
-			
-			$request->setObject('TypeRoomAll', $TypeRoomAll);
-			$request->setObject('CategoryAll', $CategoryAll);
-			$request->setObject('SupplierAll', $SupplierAll);
-			$request->setObject('DomainAll', $DomainAll);			
-			$request->setObject('EmployeeAll', $EmployeeAll);
-			$request->setObject('UnitAll', $UnitAll);			
-			$request->setObject('CustomerAll', $CustomerAll);
-			$request->setObject('TermPaidAll', $TermPaidAll);
-			$request->setObject('TermCollectAll', $TermCollectAll);
-			$request->setObject('UserAll', $UserAll);
-			$request->setObject('ConfigAll', $ConfigAll);
-						
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'TypeRoom');
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('TypeRoomAll1'	, $TypeRoomAll1);
+			$request->setObject('PN'			, $PN);
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
