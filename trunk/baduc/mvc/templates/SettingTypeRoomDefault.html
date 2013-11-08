@@ -8,7 +8,7 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -26,36 +26,54 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN ĐƠN VỊ</th>										
-										<th width="120">MÓN MẶC ĐỊNH</th>
+										<th class="left">TÊN MÓN</th>
+										<th width="120"><div class="text-right">SỐ LƯỢNG</div></th>
+										<th width="120"><div class="text-right">GIÁ</div></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="TypeRoom TypeRoomAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id TypeRoom/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="TypeRoom" tal:attributes="data-id TypeRoom/getId" tal:content="TypeRoom/getName"/></td>
-										<td class="center"><a tal:attributes="href TypeRoom/getURLCourseDefault">Xem</a></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id TypeRoom/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="CD TypeRoom/getDefaultAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id CD/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CD/getId" tal:content="CD/getCourse/getName"/></td>
+										<td class="right"><span tal:content="CD/getCount"/></td>
+										<td class="right"><span tal:content="CD/getPricePrint"/></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id CD/getId"><i class="glyphicons-remove_2"/></a></td>
 									</tr>
 								</tbody>																								
 							</table>
 						</div>
 					</div>
-					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-tag modal-icon"/>THÊM MỚI LOẠI PHÒNG</h3>
+									<h3><i class="glyphicons-tag modal-icon"/>THÊM MỚI MÓN MẶC ĐỊNH</h3>
 								</div>
 								<div class="form-horizontal">
-									<div class="modal-body">
+									<div class="modal-body">										
 										<div class="form-group">
-											<label class="control-label">Tên</label>
+											<label class="control-label">Món</label>
 											<div class="controls">
-												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+												<select name="IdCourse1" id="IdCourse1" style="width:80%;">
+													<option tal:repeat="Course CourseAll" tal:attributes="value Course/getId">
+														<span tal:content="Course/getCategory/getName" /> / <span tal:content="Course/getName" /> (<span tal:content="Course/getUnit" />)
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Số lượng</label>
+											<div class="controls">
+												<input id="Count1" name="Count1" type="text" class="form-control input-small" value="1"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá</label>
+											<div class="controls">
+												<input id="Price1" name="Price1" type="text" class="form-control input-small" value="0"/>
 											</div>
 										</div>
 									</div>
@@ -74,13 +92,31 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-tag modal-icon"/>CẬP NHẬT LOẠI PHÒNG</h3>
+									<h3><i class="glyphicons-tag modal-icon"/>CẬP NHẬT MÓN MẶC ĐỊNH</h3>
 								</div>
 								<div method="post" class="form-horizontal">
 									<div class="modal-body">
-										<label class="control-label">Tên</label>
-										<div class="controls">
-											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+										<div class="form-group">
+											<label class="control-label">Món</label>
+											<div class="controls">
+												<select name="IdCourse2" id="IdCourse2" style="width:80%;">
+													<option tal:repeat="Course CourseAll" tal:attributes="value Course/getId">
+														<span tal:content="Course/getCategory/getName" /> / <span tal:content="Course/getName" /> (<span tal:content="Course/getUnit" />)
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Số lượng</label>
+											<div class="controls">
+												<input id="Count2" name="Count2" type="text" class="form-control input-small" value="1"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá</label>
+											<div class="controls">
+												<input id="Price2" name="Price2" type="text" class="form-control input-small" value="0"/>
+											</div>
 										</div>
 									</div>									
 									<div class="modal-footer">
@@ -98,6 +134,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="IdType" tal:attributes="alt TypeRoom/getId"/>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -105,7 +142,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/TypeRoom/0";
+				var URL = "/object/del/CourseDefault/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -132,7 +169,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/TypeRoom/" + $(this).attr('alt');
+				var URL = "/object/del/CourseDefault/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -147,9 +184,12 @@
 			$('#URLInsButton').click(function(){
 				var Data = [];
 				Data[0] = 'null';
-				Data[1] = $('#Name1').val();
-																		
-				var URL = "/object/ins/TypeRoom";
+				Data[1] = $('#IdType').attr('alt');
+				Data[2] = $('#IdCourse1').val();
+				Data[3] = $('#Count1').val();
+				Data[4] = $('#Price1').val();
+				
+				var URL = "/object/ins/CourseDefault";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -165,12 +205,14 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/TypeRoom/" + $(this).attr('data-id');
+				var url = "/object/load/CourseDefault/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
+					$('#IdCourse2').select2('val', data.IdCourse);
+					$('#Count2').attr('value', data.Count);
+					$('#Price2').attr('value', data.Price);
 				});
 			});
 			
@@ -180,9 +222,12 @@
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Name2').val();
+				Data[1] = $('#IdType').attr('alt');
+				Data[2] = $('#IdCourse2').val();
+				Data[3] = $('#Count2').val();
+				Data[4] = $('#Price2').val();
 																	
-				var URL = "/object/upd/TypeRoom";
+				var URL = "/object/upd/CourseDefault";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -191,38 +236,7 @@
 						location.reload();
 					}
 				});
-			});
-			
+			});			
 		/*]]>*/</script>
 	</body>
 </html>
-<!--
-
-									<table class="table table-bordered table-striped table-hover data-table">																				
-										<thead>
-											<tr role="row">
-												<th width="30"><div class="text-center">STT</div></th>
-												<th><div class="text-left">TÊN</div></th>
-												<th width="120"><div class="text-left">MÓN MẶC ĐỊNH</div></th>
-												<th width="30" />
-											</tr>
-										</thead>
-										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="TypeRoom TypeRoomAll1">
-												<td><div class="text-center" tal:content="repeat/TypeRoom/number" /></td>
-												<td><a tal:attributes="href TypeRoom/getURLUpdLoad"><div tal:content="TypeRoom/getName" /></a></td>
-												<td><a tal:attributes="href TypeRoom/getURLCourseDefault"><div tal:content="string:Xem" /></a></td>
-												<td><a tal:attributes="href TypeRoom/getURLDelLoad"><span class="icon-remove"/></a></td>
-											</tr>
-										</tbody>										
-									</table>
-									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
-										<div class="dataTables_filter">
-											<label style="margin-top:5px;">
-												<a href="/setting/typeroom/ins/load">
-													<span class="icon-plus"/> Thêm mới
-												</a>
-											</label>
-										</div>
-										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
-!-->

@@ -19,7 +19,8 @@
 			$mTable = new \MVC\Mapper\Table();			
 			$mCourse = new \MVC\Mapper\Course();
 			$mSession = new \MVC\Mapper\Session();
-									
+			$mSD = new \MVC\Mapper\SessionDetail();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -43,7 +44,23 @@
 					0,						//Surtax
 					0						//Payment					
 				);
-				$IdSession = $mSession->insert($dSession);
+				$mSession->insert($dSession);
+				$IdSession = $dSession->getId();
+				$Table = $mTable->find($IdTable);
+				$TypeRoom = $Table->getTypeRoom();
+				$CDAll = $TypeRoom->getDefaultAll();
+				while ($CDAll->valid()){
+					$CD = $CDAll->current();
+					$SD = new \MVC\Domain\SessionDetail(
+						null,
+						$IdSession,
+						$CD->getIdCourse(),
+						$CD->getCount(),
+						$CD->getPrice()
+					);
+					$mSD->insert($SD);
+					$CDAll->next();
+				}
 			}
 			
 			//-------------------------------------------------------------

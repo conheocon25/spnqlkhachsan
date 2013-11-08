@@ -42,13 +42,8 @@ class CourseDefault extends Object{
         return $this->Session;
     }
 	
-	function setIdCourse( $IdCourse ) {
-        $this->IdCourse = $IdCourse;
-        $this->markDirty();
-    }
-	function getIdCourse( ) {
-        return $this->IdCourse;
-    }		
+	function setIdCourse( $IdCourse ) {$this->IdCourse = $IdCourse;$this->markDirty();}
+	function getIdCourse( ) {return $this->IdCourse;}		
 	function getCourse( ) {
 		if (!isset($this->Course)){
 			$mCourse = new \MVC\Mapper\Course();
@@ -56,13 +51,8 @@ class CourseDefault extends Object{
 		}
         return $this->Course;
     }	
-    function setCount( $Count ) {
-        $this->Count = $Count;
-        $this->markDirty();
-    }   
-	function getCount( ) {
-        return $this->Count;
-    }
+    function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}   
+	function getCount( ) {return $this->Count;}
 	function getCountPrint( ) {
         $num = new Number($this->Count);
 		return $num->formatCurrency();
@@ -84,32 +74,37 @@ class CourseDefault extends Object{
         return (float)($this->Count)*$Rate;
     }
 	
-	function setPrice( $Price) {
-        $this->Price = $Price;
-    }
-	function getPrice( ) {
-        return $this->Price;
-    }
+	function setPrice( $Price) {$this->Price = $Price;}
+	function getPrice( ) {return $this->Price;}
 	function getPricePrint( ) {
         $num = new Number($this->Price);
 		return $num->formatCurrency();
     }
 	
-	function getValue( ) {
-        return $this->Price*$this->Count;
-    }
+	function getValue( ) {return $this->Price*$this->Count;}
 	function getValuePrint( ) {
         $num = new Number($this->getValue());
 		return $num->formatCurrency()." đ";
     }
-	//-------------------------------------------------------------------------------
-	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){return "/setting/typeroom/".$this->getIdTypeRoom()."/default/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/typeroom/".$this->getIdTypeRoom()."/default/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){return "/setting/typeroom/".$this->getIdTypeRoom()."/default/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/typeroom/".$this->getIdTypeRoom()."/default/".$this->getId()."/del/exe";}
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdTypeRoom'	=> $this->getIdTypeRoom(),
+		 	'IdCourse'		=> $this->getIdCourse(),
+			'Count'			=> $this->getCount(),
+			'Price'			=> $this->getPrice()
+		);
+		return json_encode($json);	
+	}
+	
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->IdTypeRoom 	= $Data[1];
+		$this->IdCourse 	= $Data[2];
+		$this->Count 		= $Data[3];
+		$this->Price 		= $Data[4];
+    }
 		
 	//---------------------------------------------------------------------------------	
 	//CÁC HÀM XỬ LÍ DANH SÁCH

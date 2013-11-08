@@ -150,7 +150,7 @@ RewriteRule ^setting/category/page/([0-9]+)$ 						?cmd=SettingCategory&Page=$1 
 RewriteRule ^setting/category/([0-9]+)$ 							?cmd=SettingCategoryCourse&IdCategory=$1 [L]
 RewriteRule ^setting/category/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingCategoryCourse&IdCategory=$1&Page=$2 [L]
 
-RewriteRule ^setting/category/([a-z0-9]+)/([a-z0-9]+)/recipe$ 						?cmd=SettingCategoryCourseRecipe&IdCategory=$1&IdCourse=$2 [L]
+RewriteRule ^setting/category/([a-z0-9]+)/([a-z0-9]+)/recipe$ 		?cmd=SettingCategoryCourseRecipe&IdCategory=$1&IdCourse=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING.DOMAIN
@@ -173,7 +173,10 @@ RewriteRule ^setting/termpaid$ 										?cmd=SettingTermPaid [L]
 RewriteRule ^setting/termpaid/page/([0-9]+)$ 						?cmd=SettingTermPaid&Page=$1 [L]
 RewriteRule ^setting/termcollect$ 									?cmd=SettingTermCollect [L]
 RewriteRule ^setting/termcollect/page/([0-9]+)$ 					?cmd=SettingTermCollect&Page=$1 [L]
+
 RewriteRule ^setting/typeroom$ 										?cmd=SettingTypeRoom [L]
 RewriteRule ^setting/typeroom/page/([0-9]+)$ 						?cmd=SettingTypeRoom&Page=$1 [L]
+RewriteRule ^setting/typeroom/([0-9]+)/default$ 					?cmd=SettingTypeRoomDefault&IdType=$1 [L]
+
 RewriteRule ^setting/user$ 											?cmd=SettingUser [L]
 RewriteRule ^setting/user/page/([0-9]+)$ 							?cmd=SettingUser&Page=$1 [L]

@@ -137,19 +137,11 @@ class Course extends Object{
         $this->markDirty();
     }
 	
-	function getPicture( ) {
-        return $this->Picture;
-    }
+	function getPicture( ) {return $this->Picture;}
 	
-	function getName( ) {
-        return $this->Name;
-    }
-	function getShortName( ) {
-        return $this->ShortName;
-    }
-	function getUnit( ) {
-        return $this->Unit;
-    }
+	function getName( ) {return $this->Name;}
+	function getShortName( ) {return $this->ShortName;}
+	function getUnit( ) {return $this->Unit;}
 	//----------------------------------------------------------------------------------
 	function getTrackingCount($DateStart, $DateEnd){
 		$mTC = new 	\MVC\Mapper\SessionDetail();

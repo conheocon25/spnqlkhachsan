@@ -53,10 +53,9 @@ class TypeRoom extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------		
-	function getURLCourseDefault(){	return "/setting/typeroom/".$this->getId()."/default";}
-	function getURLCourseDefaultInsLoad(){	return "/setting/typeroom/".$this->getId()."/default/ins/load";}
-	function getURLCourseDefaultInsExe(){	return "/setting/typeroom/".$this->getId()."/default/ins/exe";}
-	
+	function getURLSetting()		{	return "/setting/typeroom/".$this->getId();}
+	function getURLCourseDefault()	{	return "/setting/typeroom/".$this->getId()."/default";}
+		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
