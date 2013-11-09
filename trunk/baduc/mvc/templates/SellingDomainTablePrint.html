@@ -44,7 +44,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr tal:repeat="Detail Session/getDetails">
+			<tr tal:repeat="Detail Session/getDetailPrintAll">
 				<td width="42%" align='left' tal:content="Detail/getCourse/getName" />
 				<td width="11%" align='right' tal:content="Detail/getCount" />
 				<td width="21%" align='right' tal:content="Detail/getPricePrint" />
