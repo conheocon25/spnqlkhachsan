@@ -19,12 +19,9 @@ interface GuestFinder 			extends Finder {}
 interface PaidGeneralFinder 	extends Finder {}
 interface PaidEmployeeFinder 	extends Finder {}
 interface SessionFinder  		extends Finder {}
-interface SessionDetailFinder  	extends Finder {}
 interface TableFinder  			extends Finder {}
-interface TableLogFinder  		extends Finder {}
 interface TermCollectFinder 	extends Finder {}
 interface TermPaidFinder 		extends Finder {}
-interface ResourceFinder 		extends Finder {}
 interface UserFinder  			extends Finder {}
 interface TrackingFinder 		extends Finder {}
 interface TrackingDailyFinder 	extends Finder {}

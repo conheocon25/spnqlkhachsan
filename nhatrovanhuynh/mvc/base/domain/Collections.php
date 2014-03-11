@@ -11,9 +11,7 @@ interface GuestCollection 			extends \Iterator {function add( Object $Guest);}
 interface PaidGeneralCollection 	extends \Iterator {function add( Object $PaidGeneral );}
 interface PaidEmployeeCollection 	extends \Iterator {function add( Object $PaidEmployee );}
 interface SessionCollection 		extends \Iterator {function add( Object $Session );	}
-interface SessionDetailCollection 	extends \Iterator {function add( Object $SessionDetail );	}
 interface TableCollection 			extends \Iterator {function add( Object $table );}
-interface TableLogCollection 		extends \Iterator {function add( Object $TableLog );}
 interface TermCollectCollection 	extends \Iterator {function add( Object $TermCollect );}
 interface TermPaidCollection 		extends \Iterator {function add( Object $TermPaid );}
 interface TrackingCollection 		extends \Iterator {function add( Object $Tracking);}

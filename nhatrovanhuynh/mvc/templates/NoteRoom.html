@@ -21,14 +21,16 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div Id="IdTable" tal:attributes="alt Table/getId" class="row">
-				<div class="col-12">					
-					<div class="widget-box">						
+				<div class="col-12">
+					<a class="btn btn-primary btn-ins"><i class="glyphicons-plus"/> Thêm mới</a>
+					<div class="widget-box">
 						<div class="widget-content nopadding">							
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
 										<th width="32">STT</th>
-										<th class="center">THỜI GIAN</th>
+										<th width="96" class="left">THỜI GIAN</th>
+										<th class="left">IN PHIẾU</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -37,8 +39,17 @@
 											<div class="text-center" tal:content="repeat/Session/number"/>
 										</td>
 										<td>
-											<a tal:attributes="href Session/getURLDetail">
-												<span tal:content="Session/getTimeRangePrint" />
+											<a class="UpdateSession" href="#DialogSession" title="Cập nhật" data-toggle="modal"
+												tal:attributes="Id Session/getId; 
+																DateTime Session/getDateTime; 
+																IdEmployee Session/getIdEmployee; 
+																Status Session/getStatus; 
+																Note Session/getNote">
+												<span tal:content="Session/getDateTimePrint" /></a>
+										</td>
+										<td>
+											<a tal:attributes="href Session/getURLPrint">
+												Xem
 											</a>
 										</td>
 									</tr>
@@ -49,7 +60,134 @@
 				</div>
 			</div>
 		</div>
+		<div id="CurrentUser" tal:attributes="alt 		CurrentUser"/>
+		<div id="CurrentTable" tal:attributes="alt 		CurrentTable"/>
+		<div id="CurrentCustomer" tal:attributes="alt 	CurrentCustomer"/>
+		<div id="CurrentEmployee" tal:attributes="alt 	CurrentEmployee"/>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		
+		<!-- DIALOG SESSION EDIT	-->
+		<div id="DialogSession" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-edit modal-icon"/>CẬP NHẬT</h3></div>
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label">Thời điểm</label>
+							<div class="controls">
+								<input id="DateTime1" name="DateTime1" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nhân viên</label>
+							<div class="controls">
+								<select name="IdEmployee1" id="IdEmployee1" style="width:80%;">
+									<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId;">
+										<span tal:content="Employee/getName" />
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tính tiền</label>
+							<div class="controls">
+								<select name="Status1" id="Status1" style="width:80%;">
+									<option value="0">Chưa tính</option>
+									<option value="1">Thanh toán đủ</option>
+									<option value="2">Nợ phiếu</option>
+								</select>
+							</div>
+						</div>												
+						<div class="form-group">
+							<label class="control-label">Ghi chú</label>
+							<div class="controls">
+								<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+							</div>
+						</div>
+						<div class="form-actions">
+							<button id="URLSessionUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+						<div id="IdSession1"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END DIALOG EDIT -->
+		
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/									
+			//-----------------------------------------------------------------------------------
+			//Update 1 SESSION
+			//-----------------------------------------------------------------------------------
+			$(".UpdateSession").click(function(){
+				var Id 			= $(this).attr('Id');
+				var DateTime	= $(this).attr('DateTime');
+				var IdEmployee 	= $(this).attr('IdEmployee');
+				var Status 		= $(this).attr('Status');
+				var Note 		= $(this).attr('Note');
+												
+				$("#URLSessionUpdButton").attr('alt', Id);
+				$("#DateTime1").val(DateTime);
+				$("#Note1").val(Note);
+				$('#Status1').select2('val', Status);
+				$('#IdEmployee1').select2('val', IdEmployee);
+				
+			});
+			
+			$("#URLSessionUpdButton").click(function(){
+				var Data = [];
+				Data[0] = $(this).attr('alt');
+				Data[1] = $("#CurrentTable").attr('alt');
+				Data[2] = $("#CurrentUser").attr('alt');
+				Data[3] = $("#CurrentCustomer").attr('alt');
+				Data[4] = $('#IdEmployee1').val()
+				Data[5] = $("#DateTime1").val();
+				Data[6] = $("#Note1").val();
+				Data[7] = 0;
+				
+				var URL = "/object/upd/Session";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+				
+			});
+						
+			//-----------------------------------------------------------------------------------
+			//Ins 1 SESSION
+			//-----------------------------------------------------------------------------------															
+			$('.btn-ins').click(function(){
+				var Data = [];
+				var CurrentDate = new Date();
+				var Now = CurrentDate.getFullYear() + "-" + (CurrentDate.getMonth() + 1) + "-" + CurrentDate.getDate();
+
+				Data[0] = 1;
+				Data[1] = $("#CurrentTable").attr('alt');
+				Data[2] = $("#CurrentUser").attr('alt');
+				Data[3] = $("#CurrentCustomer").attr('alt');
+				Data[4] = $("#CurrentEmployee").attr('alt');
+				Data[5] = Now;
+				Data[6] = "Them mau";
+				Data[7] = 0;
+										
+				var URL = "/object/ins/Session";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

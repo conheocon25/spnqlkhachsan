@@ -17,14 +17,12 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-						
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigAll 		= $mConfig->findAll();
-			$CategoryAll 	= $mCategory->findAll();
-			
+						
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
@@ -54,13 +52,7 @@
 				$ConfigRowPerPage = new \MVC\Domain\Config(null, 'ROW_PER_PAGE', 12);
 				$mConfig->insert($RowPerPage);
 			}
-			
-			$ConfigEvery5Minutes = $mConfig->findByName("EVERY_5_MINUTES");
-			if ($ConfigEvery5Minutes==null){
-				$ConfigEvery5Minutes = new \MVC\Domain\Config(null, 'EVERY_5_MINUTES', 2000);
-				$mConfig->insert($ConfigEvery5Minutes);
-			}
-			
+									
 			$ConfigGuestVisit 	= $mConfig->findByName("GUEST_VISIT");
 			if ($ConfigGuestVisit==null){
 				$ConfigGuestVisit = new \MVC\Domain\Config(null, 'GUEST_VISIT', 1);
@@ -72,50 +64,41 @@
 				$ConfigDiscount = new \MVC\Domain\Config(null, 'DISCOUNT', 0);
 				$mConfig->insert($ConfigDiscount);
 			}
-			
-			$ConfigCategoryAuto = $mConfig->findByName("CATEGORY_AUTO");
-			if ($ConfigCategoryAuto==null){
-				$ConfigCategoryAuto = new \MVC\Domain\Config(null, 'CATEGORY_AUTO', $CategoryAll->current()->getId());
-				$mConfig->insert($ConfigCategoryAuto);
-			}
-			
-			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
-			if ($ConfigSwitchBoardCall==null){
-				$ConfigSwitchBoardCall = new \MVC\Domain\Config(null, 'SWITCH_BOARD_CALL', 1);
-				$mConfig->insert($ConfigSwitchBoardCall);
-			}
-			
+						
 			$ConfigReceiptVirtualDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
 			if ($ConfigReceiptVirtualDouble==null){
 				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
 				$mConfig->insert($ConfigReceiptVirtualDouble);
 			}
 			
-			$ConfignMonthLog	= $mConfig->findByName("N_MONTH_LOG");
-			if ($ConfignMonthLog==null){
-				$ConfignMonthLog = new \MVC\Domain\Config(null, 'N_MONTH_LOG', 1);
-				$mConfig->insert($ConfignMonthLog);
+			$ConfigPriceElectric	= $mConfig->findByName("PRICE_ELECTRIC");
+			if ($ConfigPriceElectric==null){
+				$ConfigPriceElectric = new \MVC\Domain\Config(null, 'PRICE_ELECTRIC', 2000);
+				$mConfig->insert($ConfigPriceElectric);
+			}
+			
+			$ConfigPriceWater	= $mConfig->findByName("PRICE_WATER");
+			if ($ConfigPriceWater==null){
+				$ConfigPriceWater = new \MVC\Domain\Config(null, 'PRICE_WATER', 5000);
+				$mConfig->insert($ConfigPriceWater);
 			}
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', 				$Title);
-			$request->setProperty('ActiveAdmin', 		'Config');
-			$request->setObject('Navigation', 			$Navigation);
-			$request->setObject('CategoryAll', 			$CategoryAll);
-			
+			$request->setProperty('Title', 					$Title);
+			$request->setProperty('ActiveAdmin', 			'Config');
+			$request->setObject('Navigation', 				$Navigation);
+						
 			$request->setObject('ConfigName', 				$ConfigName);			
 			$request->setObject('ConfigAddress', 			$ConfigAddress);
 			$request->setObject('ConfigPhone', 				$ConfigPhone);
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);
-			$request->setObject('ConfigEvery5Minutes', 		$ConfigEvery5Minutes);
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
-			$request->setObject('ConfigDiscount', 			$ConfigDiscount);
-			$request->setObject('ConfigCategoryAuto', 		$ConfigCategoryAuto);
-			$request->setObject('ConfigSwitchBoardCall', 	$ConfigSwitchBoardCall);
-			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);
-			$request->setObject('ConfignMonthLog', 			$ConfignMonthLog);
+			$request->setObject('ConfigDiscount', 			$ConfigDiscount);			
+			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);			
+			$request->setObject('ConfigPriceElectric', 		$ConfigPriceElectric);
+			$request->setObject('ConfigPriceWater', 		$ConfigPriceWater);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

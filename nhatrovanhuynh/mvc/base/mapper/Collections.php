@@ -13,9 +13,7 @@ class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollecti
 class PaidGeneralCollection 	extends Collection implements \MVC\Domain\PaidGeneralCollection{function targetClass( ) {return "\MVC\Domain\PaidGeneral";}}
 class PaidEmployeeCollection 	extends Collection implements \MVC\Domain\PaidEmployeeCollection{function targetClass( ) {return "\MVC\Domain\PaidEmployee";}}
 class SessionCollection 		extends Collection implements \MVC\Domain\SessionCollection {function targetClass( ) {return "\MVC\Domain\Session";}}			
-class SessionDetailCollection 	extends Collection implements \MVC\Domain\SessionDetailCollection {function targetClass( ) {return "\MVC\Domain\SessionDetail";}}
 class TableCollection 			extends Collection implements \MVC\Domain\TableCollection {function targetClass( ) {return "\MVC\Domain\Table";}}		
-class TableLogCollection 		extends Collection implements \MVC\Domain\TableLogCollection {function targetClass( ) {return "\MVC\Domain\TableLog";}}
 class TermCollectCollection 	extends Collection implements \MVC\Domain\TermCollectCollection{function targetClass(){return "\MVC\Domain\TermCollect";}}
 class TermPaidCollection 		extends Collection implements \MVC\Domain\TermPaidCollection{function targetClass(){return "\MVC\Domain\TermPaid";}}
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection{function targetClass(){return "\MVC\Domain\Tracking";}}

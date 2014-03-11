@@ -48,37 +48,6 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Giảm giá (mặc định)</label>
-										<div class="controls">
-											<input id="Discount2" tal:attributes="value ConfigDiscount/getValue;data-id ConfigDiscount/getId" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Phạt trễ giờ</label>
-										<div class="controls">
-											<input id="Every5Minutes2" tal:attributes="value ConfigEvery5Minutes/getValue;data-id ConfigEvery5Minutes/getId" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Danh mục tự chọn</label>
-										<div class="controls">											
-											<select name="CategoryAuto2" id="CategoryAuto2" style="width:80%;" tal:attributes="data-id ConfigCategoryAuto/getId">
-												<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId; selected php:ConfigCategoryAuto->getValue()==Category->getId()?'selected':''">
-													<span tal:content="Category/getName" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Hiển thị gọi món</label>
-										<div class="controls">											
-											<select name="SwitchBoardCall2" id="SwitchBoardCall2" style="width:80%;" tal:attributes="data-id ConfigSwitchBoardCall/getId">
-												<option value="0" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='0'?'selected':''">Tắt</option>
-												<option value="1" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='1'?'selected':''">Bật</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
 										<label class="control-label">Giả lặp phiếu 2 liên</label>
 										<div class="controls">											
 											<select name="ReceiptVirtualDouble2" id="ReceiptVirtualDouble2" style="width:80%;" tal:attributes="data-id ConfigReceiptVirtualDouble/getId">
@@ -86,15 +55,17 @@
 												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">Bật</option>
 											</select>
 										</div>
+									</div>									
+									<div class="form-group">
+										<label class="control-label">Giá điện</label>
+										<div class="controls">
+											<input id="PriceElectric2" tal:attributes="value ConfigPriceElectric/getValue;data-id ConfigPriceElectric/getId" type="text" class="form-control input-small"/>
+										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Thời gian lưu Log</label>
-										<div class="controls">											
-											<select name="nMonthLog2" id="nMonthLog2" style="width:80%;" tal:attributes="data-id ConfignMonthLog/getId">
-												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">1 tháng</option>
-												<option value="2" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='2'?'selected':''">2 tháng</option>
-												<option value="3" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='3'?'selected':''">3 tháng</option>
-											</select>
+										<label class="control-label">Giá nước</label>
+										<div class="controls">
+											<input id="PriceWater2" tal:attributes="value ConfigPriceWater/getValue;data-id ConfigPriceWater/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 								</div>
@@ -148,9 +119,9 @@
 					success: function(msg){}
 				});
 				
-				Data3[0] = $('#Discount2').attr('data-id');
-				Data3[1] = "DISCOUNT";
-				Data3[2] = $('#Discount2').val();								
+				Data3[0] = $('#PriceElectric2').attr('data-id');
+				Data3[1] = "PRICE_ELECTRIC";
+				Data3[2] = $('#PriceElectric2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data3},
@@ -158,37 +129,16 @@
 					success: function(msg){}
 				});
 				
-				Data4[0] = $('#Every5Minutes2').attr('data-id');
-				Data4[1] = "EVERY_5_MINUTES";
-				Data4[2] = $('#Every5Minutes2').val();
+				Data4[0] = $('#PriceWater2').attr('data-id');
+				Data4[1] = "PRICE_WATER";
+				Data4[2] = $('#PriceWater2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data4},
 					url: URL,
 					success: function(msg){}
 				});
-				
-				Data5[0] = $('#CategoryAuto2').attr('data-id');
-				Data5[1] = "CATEGORY_AUTO";
-				Data5[2] = $('#CategoryAuto2').val();
-				$.ajax({
-					type: "POST",
-					data: {Data:Data5},
-					url: URL,
-					success: function(msg){}
-				});
-				
-				//Cập nhật bật/tắt board gọi món
-				Data6[0] = $('#SwitchBoardCall2').attr('data-id');
-				Data6[1] = "SWITCH_BOARD_CALL";
-				Data6[2] = $('#SwitchBoardCall2').val();
-				$.ajax({
-					type: "POST",
-					data: {Data:Data6},
-					url: URL,
-					success: function(msg){}
-				});
-				
+												
 				//Cập nhật bật/tắt in 2 liên
 				Data7[0] = $('#ReceiptVirtualDouble2').attr('data-id');
 				Data7[1] = "RECEIPT_VIRTUAL_DOUBLE";

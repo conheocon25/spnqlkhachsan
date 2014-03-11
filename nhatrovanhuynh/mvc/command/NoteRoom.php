@@ -19,13 +19,16 @@
 			//-------------------------------------------------------------
 			$mDomain 		= new \MVC\Mapper\Domain();			
 			$mTable 		= new \MVC\Mapper\Table();
+			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mCustomer 		= new \MVC\Mapper\Customer();
 			$mConfig 		= new \MVC\Mapper\Config();
-			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Domain 		= $mDomain->find($IdDomain);						
+			$Domain 		= $mDomain->find($IdDomain);									
 			$Table 			= $mTable->find($IdRoom);
+			$EmployeeAll 	= $mEmployee->findAll();
+			$CustomerAll 	= $mCustomer->findAll();
 			$ConfigName 	= $mConfig->findByName('NAME');
 			
 			$Title = $Domain->getName();
@@ -34,12 +37,18 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setObject('Domain'		, $Domain);
-			$request->setObject('Table'			, $Table);			
-			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('Domain'			, $Domain);
+			$request->setObject('Table'				, $Table);			
+			$request->setObject('EmployeeAll'		, $EmployeeAll);
+			$request->setObject('ConfigName'		, $ConfigName);
 						
-			$request->setProperty('Title'		, $Title);			
-			$request->setObject('Navigation'	, $Navigation);
+			$request->setProperty('Title'			, $Title);			
+			$request->setProperty('CurrentTable'	, $Table->getId());
+			$request->setProperty('CurrentUser'		, $Session->getCurrentIdUser());
+			$request->setProperty('CurrentEmployee'	, $EmployeeAll->current()->getId());
+			$request->setProperty('CurrentCustomer'	, $CustomerAll->current()->getId());
+			
+			$request->setObject('Navigation'		, $Navigation);
 		}
 	}
 ?>
