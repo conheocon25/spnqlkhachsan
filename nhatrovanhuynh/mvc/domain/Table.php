@@ -81,12 +81,10 @@ class Table extends Object{
 		return $SessionAll;
 	}
 	
-	function getSessions(){
-		if (!isset($this->Sessions)){
-			$mSession = new	\MVC\Mapper\Session();		
-			$this->Sessions = $mSession->findByTable(array($this->getId()));
-		}
-		return $this->Sessions;
+	function getSessionAll(){		
+		$mSession = new	\MVC\Mapper\Session();		
+		$SessionAll = $mSession->findByTable(array($this->getId()));		
+		return $SessionAll;
 	}
 	
 	function getSessionsValue(){
@@ -203,19 +201,8 @@ class Table extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL
 	//-------------------------------------------------------------------------------	
-	function getURLDetail(){return "/selling/".$this->IdDomain."/".$this->getId();}	
-	function getURLCheckinExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/checkin/exe";}
+	function getURLDetail(){return "/note/".$this->IdDomain."/".$this->getId();}
 	
-	function getURLCheckoutExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/checkout/exe";}	
-	function getURLCallLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/call/load";}
-	function getURLCallExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/call/exe";}		
-	function getURLEvalExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/eval/exe";}	
-	function getURLMoveLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/move/load";}
-	function getURLMoveExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/move/exe";}	
-	function getURLMergeLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/merge/load";}
-	function getURLMergeExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/merge/exe";}		
-	function getURLLog(){return "/selling/".$this->IdDomain."/".$this->getId()."/log";}
-
 	//---------------------------------------------------------	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

@@ -120,12 +120,9 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>						
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
 			<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
-				<a tal:attributes="href '/payroll'"><i class="glyphicons-table" />CHẤM CÔNG</a>
+				<a tal:attributes="href '/note'"><i class="glyphicons-table" />GHI PHIẾU</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
 				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
@@ -144,24 +141,7 @@
 			<li>
 				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
 			</li>
-		</ul>
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-					<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
-				<a tal:attributes="href '/paid'"><i class="glyphicons-money" />KHOẢN CHI</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
-				<a tal:attributes="href '/collect'"><i class="glyphicons-money" />KHOẢN THU</a>
-			</li>
-			<li>
-				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
-			</li>
-		</ul>
+		</ul>		
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isViewer()">
 			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
 				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>

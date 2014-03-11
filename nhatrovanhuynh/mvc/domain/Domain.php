@@ -58,7 +58,7 @@ class Domain extends Object{
 	function getURLTableInsLoad(){return "/setting/domain/".$this->getId()."/ins/load";}
 	function getURLTableInsExe(){return "/setting/domain/".$this->getId()."/ins/exe";}
 	
-	function getURLSelling(){return "/selling/".$this->getId();}
+	function getURLNote(){return "/note/".$this->getId();}
 			
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingDomainLoad extends Command {
+	class NoteRoom extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,37 +11,35 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdDomain = $request->getProperty("IdDomain");
+			$IdDomain 	= $request->getProperty('IdDomain');
+			$IdRoom 	= $request->getProperty('IdRoom');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mDomain 	= new \MVC\Mapper\Domain();
-			$mTable 	= new \MVC\Mapper\Table();
+			$mDomain 		= new \MVC\Mapper\Domain();			
+			$mTable 		= new \MVC\Mapper\Table();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			if ($IdDomain==101){
-				$TableAll = $mTable->findAllNonGuest(array());
-			}else if ($IdDomain==102){
-				$TableAll = $mTable->findAllGuest(array(-1));
-			}else{
-				$TableAll = $mTable->findByDomain(array($IdDomain));
-			}			
-						
+			$Domain 		= $mDomain->find($IdDomain);						
+			$Table 			= $mTable->find($IdRoom);
+			$ConfigName 	= $mConfig->findByName('NAME');
+			
+			$Title = $Domain->getName();
+			$Navigation = array();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title = "BÁN HÀNG";
+			$request->setObject('Domain'		, $Domain);
+			$request->setObject('Table'			, $Table);			
+			$request->setObject('ConfigName'	, $ConfigName);
 						
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setProperty('Title', $Title);
-			$request->setObject('TableAll', $TableAll);
-						
-			return self::statuses('CMD_DEFAULT');
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 		}
 	}
 ?>

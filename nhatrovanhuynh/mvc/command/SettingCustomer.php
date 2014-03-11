@@ -23,7 +23,7 @@
 			//-------------------------------------------------------------									
 			$CustomerAll = $mCustomer->findAll();
 						
-			$Title = "KHÁCH HÀNG";
+			$Title = "KHÁCH TRỌ";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);

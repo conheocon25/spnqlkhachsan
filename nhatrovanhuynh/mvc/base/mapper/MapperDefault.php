@@ -1,15 +1,10 @@
 <?php		
 	$mDomain	 		= new \MVC\Mapper\Domain();	
-	$mTable		 		= new \MVC\Mapper\Table();
-	$mSupplier		 	= new \MVC\Mapper\Supplier();
-	$mResource		 	= new \MVC\Mapper\Resource();
+	$mTable		 		= new \MVC\Mapper\Table();	
 	$mSession		 	= new \MVC\Mapper\Session();
 	$mSessionDetail	 	= new \MVC\Mapper\SessionDetail();	
-	$mEmployee 			= new \MVC\Mapper\Employee();
-	$mUnit 				= new \MVC\Mapper\Unit();
-	$mCustomer 			= new \MVC\Mapper\Customer();	
-	$mCategory 			= new \MVC\Mapper\Category();	
-	$mCourse 			= new \MVC\Mapper\Course();	
+	$mEmployee 			= new \MVC\Mapper\Employee();	
+	$mCustomer 			= new \MVC\Mapper\Customer();		
 	$mUser 				= new \MVC\Mapper\User();
 	$mConfig 			= new \MVC\Mapper\Config();
 	$mTermPaid 			= new \MVC\Mapper\TermPaid();

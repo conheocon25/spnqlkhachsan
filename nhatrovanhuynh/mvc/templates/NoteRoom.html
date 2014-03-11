@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Table1 Domain/getTableAll" tal:attributes="class php:Table1->getId()==Table->getId()?'active':'disable'">
+					<a tal:attributes="href Table1/getURLDetail">
+						<i class="glyphicons-disk_open"/> <span tal:content="Table1/getName" />
+					</a>
+				</li>								
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div Id="IdTable" tal:attributes="alt Table/getId" class="row">
+				<div class="col-12">					
+					<div class="widget-box">						
+						<div class="widget-content nopadding">							
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="32">STT</th>
+										<th class="center">THỜI GIAN</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Session Table/getSessionAll">
+										<td>
+											<div class="text-center" tal:content="repeat/Session/number"/>
+										</td>
+										<td>
+											<a tal:attributes="href Session/getURLDetail">
+												<span tal:content="Session/getTimeRangePrint" />
+											</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+	</body>
+</html>
