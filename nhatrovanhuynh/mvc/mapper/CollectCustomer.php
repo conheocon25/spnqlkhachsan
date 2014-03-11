@@ -2,63 +2,68 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
+class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinder {
 
     function __construct() {
         parent::__construct();
 				
-		$tblPaid = "nhatrovanhuynh_paid_general";
+		$tblCollectCustomer = "nhatrovanhuynh_collect_customer";
 		
-		$selectAllStmt = sprintf("select * from %s", $tblPaid);
-		$selectStmt = sprintf("select * from %s where id=?", $tblPaid);
-		$updateStmt = sprintf("update %s set id_term=?, date=?, value=?, note=? where id=?", $tblPaid);
-		$insertStmt = sprintf("insert into %s (id_term, date, value, note) values(?,?,?,?)", $tblPaid);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblPaid);
-		$findByStmt = sprintf("select * from %s where id_term=? order by date DESC", $tblPaid);
+		$selectAllStmt = sprintf("select * from %s", $tblCollectCustomer);
+		$selectStmt = sprintf("select * from %s where id=?", $tblCollectCustomer);
+		$updateStmt = sprintf("update %s set idcustomer=?, date=?, value=?, note=? where id=?", $tblCollectCustomer);
+		$insertStmt = sprintf("insert into %s (idcustomer, date, value, note) values(?,?,?,?)", $tblCollectCustomer);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblCollectCustomer);
+		$findByStmt = sprintf("select * from %s where idcustomer = ? order by date DESC", $tblCollectCustomer);		
+				
 		$findByTrackingStmt = sprintf(
-					"select * from %s
-					where
-						date >= ? AND date <= ?
-					order by
-						date DESC
-					"
-		, $tblPaid);
+			"select
+				*
+			from 
+				%s
+			where
+				idcustomer=? AND date >= ? AND date <= ?
+			order by 
+				date DESC
+			"
+		, $tblCollectCustomer);
 		
 		$findByTracking1Stmt = sprintf(
-					"select * from %s
-					where
-						id_term=? AND date >= ? AND date <= ?
-					order by
-						date DESC
-					"
-		, $tblPaid);
+			"select
+				*
+			from 
+				%s
+			where
+				date >= ? AND date <= ?
+			order by 
+				date DESC
+			"
+		, $tblCollectCustomer);
+		
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
-							WHERE id_term=:id_term
+							WHERE idcustomer=:idcustomer
 							ORDER BY date desc
 							LIMIT :start,:max
-				", $tblPaid);
+				", $tblCollectCustomer);
 				
-		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
+		$this->findByStmt = self::$PDO->prepare($findByStmt);
+		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
 		$this->findByTracking1Stmt = self::$PDO->prepare($findByTracking1Stmt);
-		$this->findByStmt = self::$PDO->prepare($findByStmt);		
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
-    function getCollection( array $raw ) {
-        return new PaidGeneralCollection( $raw, $this );
-    }
+    function getCollection( array $raw ) {return new CollectCustomerCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\PaidGeneral( 
+        $obj = new \MVC\Domain\CollectCustomer( 
 			$array['id'],
-			$array['id_term'],
+			$array['idcustomer'],
 			$array['date'],
 			$array['value'],
 			$array['note']
@@ -67,12 +72,12 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
     }
 
     protected function targetClass() {        
-		return "Paid";
+		return "CollectCustomer";
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array(			
-			$object->getIdTerm(),
+        $values = array(
+			$object->getIdCustomer(),
 			$object->getDate(),
 			$object->getValue(),
 			$object->getNote()
@@ -83,8 +88,8 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array(
-			$object->getIdTerm(),
+        $values = array( 
+			$object->getIdCustomer(),
 			$object->getDate(),
 			$object->getValue(),
 			$object->getNote(),
@@ -100,33 +105,30 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
     function selectStmt() {
         return $this->selectStmt;
     }
-    
-	function selectAllStmt() {
+    function selectAllStmt() {
         return $this->selectAllStmt;
     }
 	
 	function findBy($values ){
         $this->findByStmt->execute( $values );
-        return new PaidGeneralCollection( $this->findByStmt->fetchAll(), $this );
+        return new CollectCustomerCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
-	function findByTracking($values ) {	
-        $this->findByTrackingStmt->execute( $values );
-        return new PaidGeneralCollection( $this->findByTrackingStmt->fetchAll(), $this );
-    }
-	
-	function findByTracking1($values ) {
+	function findByTracking1($values ){
         $this->findByTracking1Stmt->execute( $values );
-        return new PaidGeneralCollection( $this->findByTracking1Stmt->fetchAll(), $this );
+        return new CollectCustomerCollection( $this->findByTracking1Stmt->fetchAll(), $this );
     }
 	
+	function findByTracking($values ){
+        $this->findByTrackingStmt->execute( $values );
+        return new CollectCustomerCollection( $this->findByTrackingStmt->fetchAll(), $this );
+    }
 	function findByPage( $values ) {		
-		$this->findByPageStmt->bindValue(':id_term', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':idcustomer', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
-        return new PaidGeneralCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CollectCustomerCollection( $this->findByPageStmt->fetchAll(), $this );
     }
-	
 }
 ?>

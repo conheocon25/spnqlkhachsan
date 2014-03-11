@@ -6,9 +6,9 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 
     function __construct() {
         parent::__construct();
-        $tblSession 		= "cafemua_session";		
-		$tblSessionDetail 	= "cafemua_session_detail";
-		$tblTable 			= "cafemua_table";
+        $tblSession 		= "nhatrovanhuynh_session";		
+		$tblSessionDetail 	= "nhatrovanhuynh_session_detail";
+		$tblTable 			= "nhatrovanhuynh_table";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSession);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSession);

@@ -6,7 +6,7 @@ class TrackingStore extends Mapper implements \MVC\Domain\TrackingStoreFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTrackingStore = "cafemua_tracking_store";
+		$tblTrackingStore = "nhatrovanhuynh_tracking_store";
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date_start", $tblTrackingStore);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingStore);

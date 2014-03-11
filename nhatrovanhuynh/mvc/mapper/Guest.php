@@ -7,7 +7,7 @@ class Guest extends Mapper implements \MVC\Domain\GuestFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblGuest = "cafemua_guest";
+		$tblGuest = "nhatrovanhuynh_guest";
 		
 		$selectAllStmt = sprintf("select * from %s ", $tblGuest);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblGuest);

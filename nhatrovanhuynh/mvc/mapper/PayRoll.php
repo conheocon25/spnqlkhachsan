@@ -7,7 +7,7 @@ class PayRoll extends Mapper implements \MVC\Domain\PayRollFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblPayRoll = "cafemua_pay_roll";
+		$tblPayRoll = "nhatrovanhuynh_pay_roll";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblPayRoll);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPayRoll);

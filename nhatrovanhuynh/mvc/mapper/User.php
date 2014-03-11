@@ -6,7 +6,7 @@ class User extends Mapper implements \MVC\Domain\UserFinder {
 
     function __construct() {
         parent::__construct();
-		$tblUser = "cafemua_user";
+		$tblUser = "nhatrovanhuynh_user";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblUser);
 		$selectStmt = sprintf("select * from %s where id=?", $tblUser);

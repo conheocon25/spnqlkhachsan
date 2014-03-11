@@ -7,26 +7,26 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function __construct() {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from cafemua_customer");
+                            "select * from nhatrovanhuynh_customer");
         $this->selectStmt = self::$PDO->prepare( 
-                            "select * from cafemua_customer where id=?");
+                            "select * from nhatrovanhuynh_customer where id=?");
         $this->updateStmt = self::$PDO->prepare( 
-                            "update cafemua_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+                            "update nhatrovanhuynh_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
         $this->insertStmt = self::$PDO->prepare( 
-                            "insert into cafemua_customer (name, type, card, phone, address, note, discount) 
+                            "insert into nhatrovanhuynh_customer (name, type, card, phone, address, note, discount) 
 							values( ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( 
-                            "delete from cafemua_customer where id=?");
+                            "delete from nhatrovanhuynh_customer where id=?");
 		$this->findByPositionStmt = self::$PDO->prepare("
 						SELECT id 
-						FROM cafemua_customer
+						FROM nhatrovanhuynh_customer
 						WHERE idlocation=?
 						LIMIT ?,1
 						ORDER By id asc
 		");
-		$this->findByCardStmt = self::$PDO->prepare("select * from cafemua_customer where card=?");
+		$this->findByCardStmt = self::$PDO->prepare("select * from nhatrovanhuynh_customer where card=?");
 		
-		$tblCustomer = "cafemua_customer";
+		$tblCustomer = "nhatrovanhuynh_customer";
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		 
@@ -81,7 +81,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     }
 	
 	function findByPostion($values) {		
-        $str = "SELECT id FROM cafemua_customer ORDER BY id LIMIT ". $values[0] .",1";		
+        $str = "SELECT id FROM nhatrovanhuynh_customer ORDER BY id LIMIT ". $values[0] .",1";		
 		$this->findByPositionStmt = self::$PDO->prepare($str);
         $this->findByPositionStmt->execute($values);
 		$result = $this->findByPositionStmt->fetchAll();
