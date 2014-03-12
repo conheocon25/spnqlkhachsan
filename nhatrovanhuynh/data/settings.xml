@@ -78,6 +78,7 @@
 		<!-- ============================================================================== -->
 		<command name="Note">			<view>Note</view>			</command>
 		<command name="NoteRoom">		<view>NoteRoom</view>		</command>
+		<command name="NoteRoomPrint">	<view>NoteRoomPrint</view>	</command>
 						
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->

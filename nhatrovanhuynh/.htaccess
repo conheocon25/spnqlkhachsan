@@ -23,6 +23,7 @@ RewriteRule ^app$ 													?cmd=App [L]
 RewriteRule ^note$ 									?cmd=Note [L]
 RewriteRule ^note/([0-9]+)$ 						?cmd=Note&IdDomain=$1 [L]
 RewriteRule ^note/([0-9]+)/([0-9]+)$ 				?cmd=NoteRoom&IdDomain=$1&IdRoom=$2 [L]
+RewriteRule ^note/([0-9]+)/([0-9]+)/([0-9]+)/print$ ?cmd=NoteRoomPrint&IdDomain=$1&IdRoom=$2&IdSession=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT

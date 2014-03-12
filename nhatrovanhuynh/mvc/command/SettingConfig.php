@@ -83,6 +83,12 @@
 				$mConfig->insert($ConfigPriceWater);
 			}
 			
+			$ConfigPriceRoom	= $mConfig->findByName("PRICE_ROOM");
+			if ($ConfigPriceRoom==null){
+				$ConfigPriceRoom = new \MVC\Domain\Config(null, 'PRICE_ROOM', 300000);
+				$mConfig->insert($ConfigPriceRoom);
+			}
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -99,6 +105,7 @@
 			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);			
 			$request->setObject('ConfigPriceElectric', 		$ConfigPriceElectric);
 			$request->setObject('ConfigPriceWater', 		$ConfigPriceWater);
+			$request->setObject('ConfigPriceRoom', 			$ConfigPriceRoom);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

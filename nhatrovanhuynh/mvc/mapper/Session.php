@@ -6,14 +6,13 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 
     function __construct() {
         parent::__construct();
-        $tblSession 		= "nhatrovanhuynh_session";		
-		$tblSessionDetail 	= "nhatrovanhuynh_session_detail";
+        $tblSession 		= "nhatrovanhuynh_session";				
 		$tblTable 			= "nhatrovanhuynh_table";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSession);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSession);
-		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, idemployee=?, datetime=?, note=?, status=? where id=?", $tblSession);
-		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, idemployee, datetime, note, status) values(?, ?, ?, ?, ?, ?, ?)", $tblSession);
+		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, idemployee=?, datetime=?, nelectric=?, oelectric=?, pelectric=?, nwater=?, owater=?, pwater=?, proom=?, note=?, status=? where id=?", $tblSession);
+		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, idemployee, datetime, oelectric, nelectric, pelectric, nwater, owater, pwater, proom, note, status) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSession);
 		
 		$findByTableStmt = sprintf("select * from %s where idtable=?", $tblSession);
@@ -35,6 +34,13 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$array['idcustomer'],
 			$array['idemployee'],
 			$array['datetime'], 			
+			$array['nelectric'], 
+			$array['oelectric'], 
+			$array['pelectric'], 
+			$array['nwater'], 
+			$array['owater'], 
+			$array['pwater'], 
+			$array['proom'], 
 			$array['note'], 
 			$array['status']			
 		);
@@ -50,6 +56,13 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getIdCustomer(),
 			$object->getIdEmployee(),
 			$object->getDateTime(),			
+			$object->getNElectric(),
+			$object->getOElectric(),
+			$object->getPElectric(),
+			$object->getNWater(),
+			$object->getOWater(),
+			$object->getPWater(),
+			$object->getPRoom(),
 			$object->getNote(),
 			$object->getStatus()					
 		);		
@@ -65,6 +78,13 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getIdCustomer(),
 			$object->getIdEmployee(),
 			$object->getDateTime(),			
+			$object->getNElectric(),
+			$object->getOElectric(),
+			$object->getPElectric(),
+			$object->getNWater(),
+			$object->getOWater(),
+			$object->getPWater(),
+			$object->getPRoom(),
 			$object->getNote(),
 			$object->getStatus(),			
 			$object->getId()

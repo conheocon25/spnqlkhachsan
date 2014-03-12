@@ -10,21 +10,35 @@ class Session extends Object{
 	private $IdTable;
 	private $IdUser;
 	private $IdCustomer;
-	private $IdEmployee;
+	private $IdEmployee;	
 	private $DateTime;	
+	private $NElectric;
+	private $OElectric;
+	private $PElectric;
+	private $NWater;
+	private $OWater;
+	private $PWater;
+	private $PRoom;
 	private $Note;
 	private $Status;
 			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdTable=null, $IdUser=null, $IdCustomer=null, $IdEmployee=null, $DateTime=null, $Note=null, $Status=null) {
+    function __construct( $Id=null, $IdTable=null, $IdUser=null, $IdCustomer=null, $IdEmployee=null, $DateTime=null, $NElectric=null, $OElectric=null, $PElectric=null, $NWater=null, $OWater=null, $PWater=null, $PRoom=null,  $Note=null, $Status=null){
         $this->Id 			= $Id;
 		$this->IdTable 		= $IdTable;
 		$this->IdUser 		= $IdUser;
 		$this->IdCustomer 	= $IdCustomer;
 		$this->IdEmployee 	= $IdEmployee;
 		$this->DateTime 	= $DateTime;
+		$this->NElectric 	= $NElectric;
+		$this->OElectric 	= $OElectric;
+		$this->PElectric 	= $PElectric;
+		$this->NWater 		= $NWater;
+		$this->OWater 		= $OWater;
+		$this->PWater 		= $PWater;
+		$this->PRoom 		= $PRoom;
 		$this->Note 		= $Note;
 		$this->Status 		= $Status;
         parent::__construct( $Id );
@@ -38,6 +52,13 @@ class Session extends Object{
 			'CustomerName'		=> $this->getCustomer()->getName(),
 			'IdEmployee'		=> $this->getIdEmployee(),
 			'DateTime'			=> $this->getDateTime(),			
+			'NElectric'			=> $this->getNElectric(),
+			'OElectric'			=> $this->getOElectric(),
+			'PElectric'			=> $this->getPElectric(),
+			'NWater'			=> $this->getNWater(),
+			'OWater'			=> $this->getOWater(),
+			'PWater'			=> $this->getPWater(),
+			'PRoom'				=> $this->getPRoom(),
 			'Note'				=> $this->getNote(),
 			'Status'			=> $this->getStatus()
 		);
@@ -51,8 +72,15 @@ class Session extends Object{
 		$this->IdCustomer 		= $Data[3];
 		$this->IdEmployee 		= $Data[4];
 		$this->DateTime 		= $Data[5];
-		$this->Note 			= $Data[6];
-		$this->Status 			= $Data[7];		
+		$this->NElectric		= $Data[6];
+		$this->OElectric		= $Data[7];
+		$this->PElectric		= $Data[8];
+		$this->NWater			= $Data[9];
+		$this->OWater			= $Data[10];
+		$this->PWater			= $Data[11];
+		$this->PRoom			= $Data[12];
+		$this->Note 			= $Data[13];
+		$this->Status 			= $Data[14];
     }
 		
 	function setId( $Id) {return $this->Id = $Id;}
@@ -95,11 +123,44 @@ class Session extends Object{
 	function getDateTime( ){return $this->DateTime;}
 	function getDatePrint( ) {$date = new Date($this->getDateTime());return $date->getDateFormat();}
     function getDateTimePrint( ){return date('d/m',strtotime($this->DateTime));}
+	function getDateTimeReceipt( ){return "THÁNG " . date('m / Y',strtotime($this->DateTime));}
 			
 	//Ghi chú
 	function getNote( ) {return $this->Note;}	
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
-		
+	
+	//Electric 
+	function getNElectric( ) {return $this->NElectric;}	
+	function setNElectric( $NElectric ) {$this->NElectric = $NElectric;$this->markDirty();}		
+	function getOElectric( ) {return $this->OElectric;}	
+	function setOElectric( $NElectric ) {$this->OElectric = $OElectric;$this->markDirty();}		
+	function getRElectric(){return $this->OElectric."-".$this->NElectric;}
+	function getDElectric(){return ($this->NElectric - $this->OElectric);}
+	function getElectricValue(){return ($this->getDElectric()*$this->getPElectric());}
+	function getElectricValuePrint(){$num = new Number($this->getElectricValue());return $num->formatCurrency();}
+	
+	//PElectric 
+	function getPElectric( ) {return $this->PElectric;}	
+	function setPElectric( $PElectric ) {$this->PElectric = $PElectric; $this->markDirty();}
+	
+	//Water
+	function getNWater( ) {return $this->NWater;}	
+	function setNWater( $NWater ) {$this->NWater = $NWater; $this->markDirty();}
+	function getOWater( ) {return $this->OWater;}	
+	function setOWater( $OWater ) {$this->OWater = $OWater; $this->markDirty();}
+	function getRWater(){return $this->OWater."-".$this->NWater;}
+	function getDWater(){return ($this->NWater - $this->OWater);}
+	function getWaterValue(){return ($this->getDWater()*$this->getPWater());}
+	function getWaterValuePrint(){$num = new Number($this->getWaterValue());return $num->formatCurrency();}
+	
+	//PWater
+	function getPWater( ) {return $this->PWater;}	
+	function setPWater( $PWater ) {$this->PWater = $PWater; $this->markDirty();}
+	
+	function getPRoom( ) {return $this->PRoom;}	
+	function setPRoom( $PRoom ) {$this->PRoom = $PRoom; $this->markDirty();}
+	function getPRoomPrint(){$num = new Number($this->getPRoom());return $num->formatCurrency();}
+	
 	//Tình trạng
 	function getStatus( ) {return $this->Status;}	
 	function setStatus( $Status ) {$this->Status = $Status;$this->markDirty();}
@@ -108,7 +169,7 @@ class Session extends Object{
 			
 	//---------------------------------------------------------														
 	function getValue(){
-		return 0;
+		return $this->getPRoom() + ($this->NWater - $this->OWater)*$this->getPWater() + ($this->NElectric - $this->OElectric)*$this->getPElectric();
 	}		
 	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency();}
 	function getValueStrPrint(){$num = new Number($this->getValue());return $num->readDigit();}
@@ -123,7 +184,7 @@ class Session extends Object{
 	
 	function getURLPrint(){
 		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/print";
+		return "/note/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/print";
     }
 	
 	//---------------------------------------------------------	
